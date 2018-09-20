@@ -49,6 +49,7 @@ class App extends Component {
 
   
   render() {
+    console.log("test");
     let blogs = this.props.blogs.reducer;
     const { dispatch } = this.props;
     const addPublishedBlog = bindActionCreators(actionCreators.addPublishedBlog, dispatch);
