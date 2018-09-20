@@ -1,0 +1,116 @@
+header .sideNavIcon {
+    font-size: 23px;
+    padding-top: 10px;
+    color: white;
+    font-family: 'Poiret One', cursive;
+    text-transform: none;
+}
+
+header .sideNavDiv {
+    background-color: rgb(241, 169, 12);
+    display: flex;
+    /* justify-content: space-between; */
+    padding: 0 50px;
+    height: 8vh;
+    box-shadow: 0px 5px 8px rgb(195,199,218);
+}
+
+.welcomeMsg {
+    font-size: 3.5em;
+    margin-bottom: 1.7em;
+}
+
+.dashboard-div{
+    height: 100vh; 
+    transition: margin-left .5s;
+    padding: 0px; 
+    font-family: 'Poiret One', cursive;
+}
+
+.leftDrawer {
+    padding-top: 14px;
+}
+.leftDrawer a {
+    padding: 1em 10em 1em 4em;
+    text-decoration: none;
+    font-size: 1em;
+    color: black;
+    display: block;
+    width: 100%;
+}
+
+.profilePicture {
+    height: 17%;
+    border-bottom:  1px solid grey;
+}
+
+.profilePicture .drawerUserEmail {
+    margin-top: 95px;
+    margin-left: 35px;
+    width: 60%;
+
+    font-size: 14px;
+    border: 1.49px solid lightgrey;
+    border-radius: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.menu {
+    color: white;
+    font-size: 25px;
+    padding-left: 30px;
+    margin-top: 15px;
+}
+
+.leftDrawer a:hover {
+    background: rgb(228, 221, 221);
+    /* background-color: rgb(238,238,238); */
+    color: darkgray;
+    font-size: 1.05em;
+}
+.createBlogDiv button{
+    background-color: white;
+    margin: auto;
+    font-size: 17px;
+    border: 1px solid rgb(255,94,28);
+    /* border: 1px solid transparent; */
+    padding: 10px 25px;
+    border-radius: 25px;
+    color: rgb(255,94,28);
+    /* font-variant: small-caps; */
+    font-family: Quicksand;  
+    text-transform: none;
+}
+
+.createBlogDiv button:hover {
+    background-color: rgb(255,133,37);
+    color: white;
+}
+
+.createBlogDiv {
+    padding-top: 20vh;
+    text-align: center;
+}
+
+ #alert-dialog-title h2{
+    font-size: 22px;
+    color: darkslategray;
+    font-family: 'Poiret One', cursive; 
+}
+
+.logoutDialogButtons span {
+    font-size: 17px;
+    color: darkslategray;
+    font-family: 'Poiret One', cursive; 
+}
+
+.blogs-header {
+    display: flex;
+}
+
+.blogs-header div {flex-grow: .77;}
+.blogs-header h3 {flex-grow: 7;}

@@ -1,0 +1,76 @@
+.blogEditor {
+    width: 60%;
+    height: 70vh; 
+    margin: auto;
+    /* background: aliceblue; */
+}
+
+.editor-class {
+    height: 50vh;
+    background-color:hsl(0, 0%, 96.9%);
+    margin-bottom: 2em;
+    padding: 10px 35px;
+}
+
+.blogTitle input, .blogTitle label{
+    font-size: 20px;
+}
+
+.blogEditor .blogTitle {
+    margin-top: 1.7em;
+   margin-bottom: 3em;
+   color: grey;
+}
+
+/* .blogTitle label:focus {
+    font-style: italic;
+} */
+
+.buttonDiv {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buttonDiv button {
+    width: 50%;
+    font-size: 16px;
+    background-color: white;
+    color: rgb(255,133,37);
+    border: 1.1px solid rgb(255,133,37);
+}
+
+.buttonDiv .saveButton{
+    margin-right: 5px;
+}
+
+.buttonDiv .saveButton:hover,
+.buttonDiv .publishButton:hover{
+    background-color: rgb(255,133,37);
+    color: white;
+    border-color:  rgb(255,133,37);
+}
+
+#message-id {
+    font-size: 16px;
+}
+
+/* back arrow  */
+
+.backArrowDiv button .MuiButton-label-2{
+    font-size: 25px;
+    color: black;
+    height: 52px;
+}
+
+.backArrowDiv button {
+    margin: 35px 0 0 100px;
+    background-color: white;
+}
+
+.backArrowDiv button:hover {
+    background-color: rgb(255,133,37);
+}
+.backArrowDiv button .MuiButton-label-2:hover{
+    color: white;
+}

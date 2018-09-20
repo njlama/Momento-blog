@@ -1,0 +1,93 @@
+
+.profile-root {
+    background-color: beige;
+    height: 100vh;
+}
+
+
+.profile-maindiv {
+    width: 60%;
+    height: 70vh;
+    margin: auto;
+    margin-top: 80px;
+    /* background-color: rgb(226, 220, 209); */
+    background-color: white;
+    text-align: center;
+    border: 1px solid #dbdbdb;
+    display: flex;
+
+}
+
+ .profile-navbar{
+    width: 32%;
+    height: 100%;
+    /* background-color: red; */
+    /* border-right: 1px solid grey; */
+    border-right: 1px solid #dbdbdb
+}
+
+.profile-article {
+    width: 70%;
+    /* align-content: center; */
+}
+
+.profileNavbar-ul  {
+    list-style-type: none;
+    padding-left: 0px;
+    padding-top: 15px;
+}
+
+
+.profileNavbar-ul li { 
+    padding: 10px 10px 10px 0;
+    text-align: left;
+}
+
+.profileNavbar-ul li a {
+    color: black;
+    padding-left: 25px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.profileNavbar-ul li:hover {
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border-left: 1px solid black;
+}
+
+form .form-horizontal {
+    background-color: red;
+    height: 70%;
+}
+
+.profile-edit {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    padding-top: 25px;
+    text-align: left;
+}
+
+.form-group input {
+    width: 80%;
+    margin-left: 20px;
+}
+
+.form-group label {
+    text-align: right;
+    padding-right: 0px;
+}
+
+
+
+.editResetButton {
+    align-content: center;
+    margin-top: 50%;
+    /* background-color: red; */
+}
+
+.editResetButton .btn-default {
+    margin-left: 40%;
+}

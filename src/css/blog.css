@@ -1,0 +1,64 @@
+.cardDiv{
+    width: 40%;
+    /* margin: auto; */
+    margin-bottom: 18px;
+    margin-right: 18px;
+    height: 250px;
+    padding: 5px;
+} 
+
+.blogDisplayDiv {
+    width: 70%;
+    margin: auto;
+    margin-top: 5em;
+}
+
+/* blog Edit/Remove/Post button */
+.cardDiv button {
+    font-size: 15px;
+    color: #0000EE ;
+}
+
+.cardDiv h2 {
+    font-size: 25px;
+}
+
+.cardDiv p {
+    font-size: 16px;
+    padding-top: 5px;
+}
+
+.cardDiv .cardActionArea,
+.MuiCardContent-root-96 {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.MuiCardActionArea-root-91 {
+    width: 100%;
+}
+
+
+.postMainDiv {
+    width: 70%;
+    margin: auto;
+    /* display: flex; */
+    /* justify-content: space-around; */
+    /* flex-wrap: wrap; */
+    /* margin-top: 50px;
+    margin-bottom: 50px; */
+}
+
+/* @media (max-width: 768px) {
+    .postMainDiv {
+        width: 90%;
+    }
+    .postMainDiv .post {
+        display: block;
+        width: 100%;
+        padding: 0 50px;
+        padding-bottom: 15px;
+        margin: 15px;
+   
+    }
+} */
