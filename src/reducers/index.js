@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
-import reducer from './dataReducers';
+import {blogsReducer, editReducer } from './dataReducers';
 
-export default combineReducers({ reducer });
+
+export default combineReducers({ blogsReducer, editReducer });
 

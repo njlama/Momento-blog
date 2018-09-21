@@ -1,6 +1,6 @@
-import { FETCH_BLOGS, FETCH_BLOGS_AFTER_REMOVED, FETCH_BLOGS_CHANGED } from '../actions/types';
+import { FETCH_BLOGS, FETCH_BLOGS_AFTER_REMOVED, FETCH_BLOGS_CHANGED, EDIT_REDUCER } from '../actions/types';
 
-export default ( state = [], action) => {
+export function blogsReducer( state = [], action) {
 
     switch(action.type){
         case FETCH_BLOGS:
@@ -25,9 +25,9 @@ export default ( state = [], action) => {
         case FETCH_BLOGS_CHANGED: 
             for ( let i=0; i<state.length; i++){
                 if(state[i].id === action.id){
-                    state[i].title = action.aTitle,
-                    state[i].content = action.aContent,
-                    state[i].status= action.aStatus
+                    state[i].title = action.title,
+                    state[i].content = action.content,
+                    state[i].status= action.status
                 }
             }
             return [...state]
@@ -35,3 +35,18 @@ export default ( state = [], action) => {
             return state;
     }
 };
+
+export function editReducer(state={}, action){
+    switch(action.type){
+        case EDIT_REDUCER:
+            return {
+                title : action.title,
+                content : action.content,
+                id: action.id
+                // status : action.status
+            }
+        default:
+            return state;
+            
+    }
+}

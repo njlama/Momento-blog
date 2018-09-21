@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from './actions/index';
+import firebase from 'firebase';
 
 import HeaderSignup from './components/MainPage';
 import LoginForm from './components/LoginForm';
-
-import { BrowserRouter, Route } from 'react-router-dom';
-
-import './App.css';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
-import * as actionCreators from './actions/index';
-import firebase from 'firebase';
 import Dashboard from './components/Dashboard';
 import CreateNewBlog from './components/CreateNewBlog';
 import DisplayProfile from './components/DisplayProfile';
 import PublishedBlog from './components/dashboardComponents/PublishedBlog';
 import UnpublishedBlog from './components/dashboardComponents/UnpublishedBlog';
 import UpdateBlog from './components/dashboardComponents/UpdateBlog';
+import './App.css';
 
 import createHistory from 'history/createBrowserHistory';
 const history = createHistory();
-// import PublishedBlog from './components/dashboard components/PublishedBlog';
-
 
 class App extends Component {
 
@@ -40,7 +36,8 @@ class App extends Component {
         fetchBlogs(user.uid);
         const fetchBlogsAfterRemoved = bindActionCreators(actionCreators.fetchBlogsAfterRemoved, dispatch);
         fetchBlogsAfterRemoved(user.uid);
-        
+        const fetchBlogsAfterChanged = bindActionCreators(actionCreators.fetchBlogsAfterChanged, dispatch);
+        fetchBlogsAfterChanged(user.uid);        
       } else {
         console.log("USer not present")
       }
@@ -49,11 +46,15 @@ class App extends Component {
 
   
   render() {
-    let blogs = this.props.blogs.reducer;
+    let blogs = this.props.blogs.blogsReducer;
+    let updateInfo = this.props.blogs.editReducer;
+    // console.log(updateInfo);
     const { dispatch } = this.props;
     const addPublishedBlog = bindActionCreators(actionCreators.addPublishedBlog, dispatch);
     const addSavedBlog = bindActionCreators(actionCreators.addSavedBlog, dispatch);
     const removeBlog = bindActionCreators(actionCreators.removeBlog, dispatch);
+    const updateBlog = bindActionCreators(actionCreators.updateBlog, dispatch);
+    const updateUnpublishedBlog = bindActionCreators(actionCreators.updateUnpublishedBlog, dispatch);
     return (
       <BrowserRouter>
         <div>
@@ -73,9 +74,11 @@ class App extends Component {
           <Route exact path="/unpublishedBlog"
                   render={() => <UnpublishedBlog blogs={blogs} 
                                 removeBlog={removeBlog}
-                                uid={this.state.uid}/>}/>
+                                uid={this.state.uid}
+                                updateUnpublishedBlog={updateUnpublishedBlog}/>}/>
           <Route path="/unpublishedBlog/update-blog"
-                  render={() => <UpdateBlog/>}/>
+                  render={() => <UpdateBlog updateInfo={updateInfo}
+                                updateBlog={updateBlog}/>}/>
         </div>
       </BrowserRouter>
     );

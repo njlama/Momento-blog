@@ -35,7 +35,7 @@ class CreateNewBlog extends React.Component {
     }
 
     onEditorStateChange = (event) => {
-        
+       
         let editorSourceHTML = draftToHtml(convertToRaw(event.getCurrentContent()));
         let mSourceHTML = stripTags(editorSourceHTML);
         let nSourceHTML = mSourceHTML.replace(/&nbsp;/gi, "");

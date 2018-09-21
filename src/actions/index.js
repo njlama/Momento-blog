@@ -1,4 +1,4 @@
-import { FETCH_BLOGS, FETCH_BLOGS_AFTER_REMOVED ,FETCH_BLOGS_CHANGED} from './types';
+import { FETCH_BLOGS, FETCH_BLOGS_AFTER_REMOVED ,FETCH_BLOGS_CHANGED, EDIT_REDUCER } from './types';
 import { dbBlogs } from '../config';
 import firebase from 'firebase';
 
@@ -24,9 +24,9 @@ export const removeBlog = (blogID, uid) => async dispatch => {
 
 export const updateBlog = (uid, blogID, nTitle, nContent, nStatus) => async dispatch => {
     dbBlogs.child(uid).child(blogID).update({
-        aTitle: nTitle, 
-        aContent: nContent,
-        aStatus: nStatus
+        title: nTitle, 
+        content: nContent,
+        status: nStatus
     });
 }
 
@@ -54,10 +54,24 @@ export const fetchBlogsAfterRemoved = (uid) => async dispatch => {
 
 export const fetchBlogsAfterChanged = (uid) => async dispatch => {
     dbBlogs.child(uid).on("child_changed", snapShot =>{
+        console.log(snapShot.val());
         dispatch({
             type: FETCH_BLOGS_CHANGED, 
-            id: snapShot.key
+            id: snapShot.key, 
+            title: snapShot.val().title,
+            content: snapShot.val().content,
+            status: snapShot.val().status, 
         })
     })
+}
+
+/** For updateUnpublishedBlog reducer*/
+export const updateUnpublishedBlog = (title, content, id) => {
+    return {
+        type: EDIT_REDUCER,
+        title,
+        content,
+        id
+    }
 }
 

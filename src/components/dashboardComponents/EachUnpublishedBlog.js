@@ -37,6 +37,13 @@ export default class EachUnpublishedBlog extends React.Component{
         this.setState({ openRemoveDialogBox: false }) 
     }
 
+    editHandler = () => {
+        let id= this.props.id;
+        let title = this.props.title;
+        let content = this.props.content;
+        this.props.updateUnpublishedBlog(title, content, id);
+    }
+
     render(){
         const { title, content } = this.props;
         return(
@@ -59,8 +66,8 @@ export default class EachUnpublishedBlog extends React.Component{
                     </CardActionArea>
                 </div>
                     <CardActions>
-                        <Button size="small" color="primary">
-                            
+                        <Button size="small" color="primary"
+                            onClick={this.editHandler.bind(this)}> 
                             <NavLink to="/unpublishedBlog/update-blog">Edit</NavLink>
                         </Button>
                         <Button size="small" color="primary"

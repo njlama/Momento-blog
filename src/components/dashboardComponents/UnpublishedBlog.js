@@ -21,11 +21,13 @@ export default class UnpublishedBlog extends React.Component {
                 .map((eachBlog, index) => {
                     if( eachBlog.status === "saved"){
                        return <EachUnpublishedBlog key={index} 
-                                        title={eachBlog.title}
                                         id={eachBlog.id}
+                                        title={eachBlog.title}
+                                        status={eachBlog.status}
                                         content={eachBlog.content}
                                         uid={this.props.uid}
-                                        removeBlogAction={this.props.removeBlog}/> 
+                                        removeBlogAction={this.props.removeBlog}
+                                        updateUnpublishedBlog={this.props.updateUnpublishedBlog}/> 
                     }
                     
                 });
