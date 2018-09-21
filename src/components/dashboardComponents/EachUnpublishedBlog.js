@@ -44,6 +44,16 @@ export default class EachUnpublishedBlog extends React.Component{
         this.props.updateUnpublishedBlog(title, content, id);
     }
 
+    editStatusToPublished = () => {
+       
+        let uid = this.props.uid;
+        let id = this.props.id;
+        let title = this.props.title;
+        let content = this.props.content;
+        let status = "published"
+        this.props.updateBlogFirebase(uid, id, title, content, status);
+    }
+
     render(){
         const { title, content } = this.props;
         return(
@@ -65,6 +75,7 @@ export default class EachUnpublishedBlog extends React.Component{
                         </CardContent>
                     </CardActionArea>
                 </div>
+                <div className="cardButtonArea">
                     <CardActions>
                         <Button size="small" color="primary"
                             onClick={this.editHandler.bind(this)}> 
@@ -74,12 +85,15 @@ export default class EachUnpublishedBlog extends React.Component{
                                 onClick={this.removeButtonHandler.bind(this)}>
                             Remove
                         </Button>
-                        <Button size="small" color="primary">
+                        <Button size="small" color="primary"
+                                onClick={this.editStatusToPublished.bind(this)}>
                             Publish
                         </Button>
                     </CardActions>
+                </div>
                 </Card>
                 <div>
+
                     {/* Remove dialog box */}
                 <Dialog
                     open={this.state.openRemoveDialogBox}

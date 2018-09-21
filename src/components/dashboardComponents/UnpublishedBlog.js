@@ -27,7 +27,8 @@ export default class UnpublishedBlog extends React.Component {
                                         content={eachBlog.content}
                                         uid={this.props.uid}
                                         removeBlogAction={this.props.removeBlog}
-                                        updateUnpublishedBlog={this.props.updateUnpublishedBlog}/> 
+                                        updateUnpublishedBlog={this.props.updateUnpublishedBlog}
+                                        updateBlogFirebase={this.props.updateBlogFirebase}/> 
                     }
                     
                 });
@@ -38,10 +39,11 @@ export default class UnpublishedBlog extends React.Component {
                 <HeaderDB/>
                 <div className="blogs-header">
                     <ArrowNavToDashboard/>
-                    <h3>Saved Blogs</h3>
+                    <h2>Unpublished Blogs</h2>
                 </div>
                <div className="blogDisplayDiv">
                     <GridList cellHeight={160} cols={3}>
+                        
                         { blogPost }
                     </GridList>
                 </div>       

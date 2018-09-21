@@ -1,8 +1,9 @@
 .cardDiv{
     width: 40%;
     /* margin: auto; */
-    margin-bottom: 18px;
-    margin-right: 18px;
+    margin-bottom: 5vh;
+    margin-left: 52px;
+    /* margin-left: 30px; */
     height: 250px;
     padding: 5px;
 } 
@@ -10,8 +11,10 @@
 .blogDisplayDiv {
     width: 70%;
     margin: auto;
-    margin-top: 5em;
+    margin-top: 3em;
 }
+
+
 
 /* blog Edit/Remove/Post button */
 .cardDiv button {
@@ -20,12 +23,20 @@
 }
 
 .cardDiv h2 {
-    font-size: 25px;
+    font-size: 23px;
+    /* font-weight: bold; */
+    font-family: Quicksand;  
+    /* font-family: Roboto,sans-serif; */
 }
 
 .cardDiv p {
-    font-size: 16px;
+    font-size: 17px;
     padding-top: 5px;
+    /* color: #424242; */
+    color: #212121;
+    /* color: red; */
+    font-family: Quicksand;  
+    line-height: 1.7em;
 }
 
 .cardDiv .cardActionArea,
@@ -34,19 +45,23 @@
     overflow-y: scroll;
 }
 
+.cardButtonArea button, a {
+    color: rgba(0,0,0,.54);
+}
+
+.cardButtonArea button:hover, a:hover {
+    background-color: white;
+    color: rgb(255,94,28);
+    text-decoration: none;
+}
+
 .MuiCardActionArea-root-91 {
     width: 100%;
 }
 
-
 .postMainDiv {
     width: 70%;
     margin: auto;
-    /* display: flex; */
-    /* justify-content: space-around; */
-    /* flex-wrap: wrap; */
-    /* margin-top: 50px;
-    margin-bottom: 50px; */
 }
 
 /* @media (max-width: 768px) {

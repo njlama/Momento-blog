@@ -32,6 +32,7 @@ class CreateNewBlog extends React.Component {
         this.setState({
             titleValue: e.target.value
         })
+        // console.log(this.state.editorState);
     }
 
     onEditorStateChange = (event) => {
@@ -39,19 +40,21 @@ class CreateNewBlog extends React.Component {
         let editorSourceHTML = draftToHtml(convertToRaw(event.getCurrentContent()));
         let mSourceHTML = stripTags(editorSourceHTML);
         let nSourceHTML = mSourceHTML.replace(/&nbsp;/gi, "");
+        nSourceHTML = nSourceHTML.trim();
         this.setState({
             editorState: nSourceHTML,
         })
     }
 
     /** func for empty input field  */
-    inputErrorDisplay = (param, event) => {
-        if ( this.state.titleValue.trim() !== "" && param.trim() !== ""){
+    inputErrorDisplay = () => {
+        if ( this.state.titleValue !== "" && this.state.editorState !== "" && this.state.editorState !== null && this.state.editorState !== ""){
             console.log("You got both values")
+            console.log(this.state.editorState)
         } else {
-            console.log("both field are required");
-            this.setState({ openSnackBar: true})
-        };
+                console.log("Requires both values")
+                this.setState({ openSnackBar: true})
+            }    
     }
 
     /** getting user.uid */
@@ -65,23 +68,28 @@ class CreateNewBlog extends React.Component {
     }
 
     publishButton = (param, event) => {
-        this.inputErrorDisplay(param, event);
+        this.inputErrorDisplay();
         var uid = this.getUserUID();
         let titleValue = this.state.titleValue;
         let content = this.state.editorState;
-        this.props.addPublishedBlog(uid, titleValue, content )
-        this.setState({ openSnackBarForBlogUpload: true})
-        window.location.reload();
+        
+        if(titleValue !== ""  && content !== "" && titleValue !== null && content !== null){
+            this.props.addPublishedBlog(uid, titleValue, content );
+            this.setState({ openSnackBarForBlogUpload: true});
+            window.location.reload();
+        }
     }
 
-    saveButton = (param, event ) => {
-        this.inputErrorDisplay(param, event);
+    saveButton = () => {
+        this.inputErrorDisplay();
         var uid = this.getUserUID();
         let titleValue = this.state.titleValue;
         let content = this.state.editorState;
-        this.props.addSavedBlog(uid, titleValue, content )
-        this.setState({ openSnackBarForBlogUpload: true})
-        window.location.reload();
+        if(titleValue !== ""  && content !== "" && titleValue !== null && content !== null){
+            this.props.addSavedBlog(uid, titleValue, content);
+            this.setState({ openSnackBarForBlogUpload: true});
+            window.location.reload();
+        } 
     }
 
     /** Error display */
@@ -100,7 +108,6 @@ class CreateNewBlog extends React.Component {
     }
 
     render(){
-    
         return(
             <div>
                 <ArrowNavToDashboard/>

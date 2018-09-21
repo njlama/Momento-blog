@@ -17,7 +17,7 @@ header .sideNavDiv {
 
 .welcomeMsg {
     font-size: 3.5em;
-    margin-bottom: 1.7em;
+    margin-bottom: 0.7em;
 }
 
 .dashboard-div{
@@ -77,11 +77,9 @@ header .sideNavDiv {
     margin: auto;
     font-size: 17px;
     border: 1px solid rgb(255,94,28);
-    /* border: 1px solid transparent; */
     padding: 10px 25px;
     border-radius: 25px;
     color: rgb(255,94,28);
-    /* font-variant: small-caps; */
     font-family: Quicksand;  
     text-transform: none;
 }
@@ -92,8 +90,13 @@ header .sideNavDiv {
 }
 
 .createBlogDiv {
-    padding-top: 20vh;
+    padding-top: 8vh;
     text-align: center;
+}
+
+.dashboard-blogContent {
+    margin-top: 7vh;
+    width: 100%; 
 }
 
  #alert-dialog-title h2{
@@ -108,9 +111,20 @@ header .sideNavDiv {
     font-family: 'Poiret One', cursive; 
 }
 
+/* For unpublished and published blog page */
 .blogs-header {
+    width: 90%;
+    margin: auto;
     display: flex;
 }
 
-.blogs-header div {flex-grow: .77;}
-.blogs-header h3 {flex-grow: 7;}
+.blogs-header div {
+    flex-grow: .4;
+}
+.blogs-header h2 {
+    flex-grow: 8;
+    padding-top: 25px;
+    font-family: Quicksand;
+}
+
+

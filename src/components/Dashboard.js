@@ -26,6 +26,9 @@ class Dashboard extends React.Component {
                             Create a new blog
                     </Button>
                 </div>
+
+                <div className="dashboard-blogContent">
+                </div>
                 
             </div>
         );

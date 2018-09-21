@@ -54,12 +54,14 @@ export default class EachPublishedBlog extends React.Component{
                         </CardContent>
                     </CardActionArea>
                 </div>
+                <div className="cardButtonArea">
                     <CardActions>
                         <Button size="small" color="primary"
                                 onClick={this.removeButtonHandler.bind(this)}>
                             Remove
                         </Button>
                     </CardActions>
+                </div>
                 </Card>
                 <div>
                     {/* Remove dialog box */}

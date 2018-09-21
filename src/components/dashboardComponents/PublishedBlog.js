@@ -32,10 +32,9 @@ export default class PublishedBlog extends React.Component {
         return(
             <div>
                 <HeaderDB/>
-                
                 <div className="blogs-header">
                     <ArrowNavToDashboard/>
-                    <h3>My Published Blogs</h3>
+                    <h2>My Published Blogs</h2>
                 </div>
 
                 <div className="blogDisplayDiv">

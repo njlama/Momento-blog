@@ -75,7 +75,8 @@ class App extends Component {
                   render={() => <UnpublishedBlog blogs={blogs} 
                                 removeBlog={removeBlog}
                                 uid={this.state.uid}
-                                updateUnpublishedBlog={updateUnpublishedBlog}/>}/>
+                                updateUnpublishedBlog={updateUnpublishedBlog}
+                                updateBlogFirebase={updateBlog}/>}/>
           <Route path="/unpublishedBlog/update-blog"
                   render={() => <UpdateBlog updateInfo={updateInfo}
                                 updateBlog={updateBlog}/>}/>
