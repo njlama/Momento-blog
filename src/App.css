@@ -153,19 +153,9 @@ header .left-navbar, .right-navbar{
   Media Queries
 ==================================== */
 
-/* @media (max-width: 768px) {
-    .postMainDiv {
-        width: 90%;
-    }
-    .postMainDiv .post {
-        display: block;
-        width: 100%;
-        padding: 0 50px;
-        padding-bottom: 15px;
-        margin: 15px;
-   
-    }
-} */
+@media (max-width: 768px) {
+    
+}
 
 @media (min-width: 769px){
 

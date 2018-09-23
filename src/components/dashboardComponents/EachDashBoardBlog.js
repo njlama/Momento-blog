@@ -12,26 +12,26 @@ import Button from '@material-ui/core/Button';
 import '../../css/blog.css';
 
 
-export default class EachPublishedBlog extends React.Component{
+export default class EachDashBoardBlog extends React.Component{
 
-    state = {
-        openRemoveDialogBox: false,
-    }
+    // state = {
+    //     openRemoveDialogBox: false,
+    // }
 
-    removeButtonHandler = () => {
-        this.setState({ openRemoveDialogBox: true });
-    }
+    // removeButtonHandler = () => {
+    //     this.setState({ openRemoveDialogBox: true });
+    // }
 
-    handleClose = () => {
-        this.setState({ openRemoveDialogBox: false })   
-    }
+    // handleClose = () => {
+    //     this.setState({ openRemoveDialogBox: false })   
+    // }
 
-    YesForRemoveHandler = () => {
-        let id = this.props.id;
-        let uid = this.props.uid;
-        this.props.removeBlogAction(id, uid);
-        this.setState({ openRemoveDialogBox: false }) 
-    }
+    // YesForRemoveHandler = () => {
+    //     let id = this.props.id;
+    //     let uid = this.props.uid;
+    //     this.props.removeBlogAction(id, uid);
+    //     this.setState({ openRemoveDialogBox: false }) 
+    // }
 
     render(){
         const { title, content } = this.props;
@@ -54,37 +54,15 @@ export default class EachPublishedBlog extends React.Component{
                         </CardContent>
                     </CardActionArea>
                 </div>
-                <div className="cardButtonArea">
+                {/* <div className="cardButtonArea">
                     <CardActions>
                         <Button size="small" color="primary"
                                 onClick={this.removeButtonHandler.bind(this)}>
                             Remove
                         </Button>
                     </CardActions>
-                </div>
+                </div> */}
                 </Card>
-                <div>
-                    {/* Remove dialog box */}
-                <Dialog
-                    open={this.state.openRemoveDialogBox}
-                    onClose={this.handleClose.bind(this)}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                    className="logoutDialog">
-                    <DialogTitle id="alert-dialog-title">
-                        Are sure you want to remove blog?
-                    </DialogTitle>
-
-                    <DialogActions className="logoutDialogButtons">
-                        <Button onClick={this.YesForRemoveHandler.bind(this)} color="primary">
-                            Yes
-                        </Button>
-                        <Button onClick={this.handleClose} color="primary" autoFocus>
-                            No
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-                </div>
             </div>
         );
     }

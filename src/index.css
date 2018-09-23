@@ -6,6 +6,10 @@ body {
   position: relative;
 }
 
+#root {
+  min-width: 520px;
+}
+
 
 
 

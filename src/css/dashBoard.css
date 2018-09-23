@@ -16,8 +16,8 @@ header .sideNavDiv {
 }
 
 .welcomeMsg {
-    font-size: 3.5em;
     margin-bottom: 0.7em;
+    font-size: 2.2em;
 }
 
 .dashboard-div{
@@ -75,10 +75,10 @@ header .sideNavDiv {
 .createBlogDiv button{
     background-color: white;
     margin: auto;
-    font-size: 17px;
     border: 1px solid rgb(255,94,28);
     padding: 10px 25px;
     border-radius: 25px;
+    font-size: 12px;
     color: rgb(255,94,28);
     font-family: Quicksand;  
     text-transform: none;
@@ -92,11 +92,13 @@ header .sideNavDiv {
 .createBlogDiv {
     padding-top: 8vh;
     text-align: center;
+    width: 80%;
+    margin: auto;
 }
 
 .dashboard-blogContent {
+    margin: auto;
     margin-top: 7vh;
-    width: 100%; 
 }
 
  #alert-dialog-title h2{
@@ -104,6 +106,8 @@ header .sideNavDiv {
     color: darkslategray;
     font-family: 'Poiret One', cursive; 
 }
+
+
 
 .logoutDialogButtons span {
     font-size: 17px;
@@ -125,6 +129,36 @@ header .sideNavDiv {
     flex-grow: 8;
     padding-top: 25px;
     font-family: Quicksand;
+}
+
+@media (max-width: 720px) {
+    .dashboard-blogContent {   
+        width: 80%;  
+    }
+
+    .welcomeMsg{
+        font-size: 1.7em;
+    }
+}
+
+@media (max-width: 520px){
+    .welcomeMsg{
+        display: none;
+    }
+}
+
+@media (min-width: 920px) {
+    .dashboard-blogContent {   
+        width: 80%;  
+    }
+
+    .welcomeMsg {
+        font-size: 2.8em;
+    }
+
+    .createBlogDiv button {
+        font-size: 17px;
+    }
 }
 
 
