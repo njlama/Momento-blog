@@ -59,6 +59,11 @@ header .sideNavDiv {
     cursor: pointer;
 }
 
+.profilePicture a:hover {
+    text-decoration: none;
+    color: rgb(59, 57, 57);
+}
+
 .menu {
     color: white;
     font-size: 25px;
@@ -68,9 +73,9 @@ header .sideNavDiv {
 
 .leftDrawer a:hover {
     background: rgb(228, 221, 221);
-    /* background-color: rgb(238,238,238); */
     color: darkgray;
     font-size: 1.05em;
+    text-decoration: none;
 }
 .createBlogDiv button{
     background-color: white;

@@ -47,7 +47,7 @@
     color: rgba(0,0,0,.54);
 }
 
-.cardButtonArea button:hover, a:hover {
+.cardButtonArea button:hover, .cardButtonArea a:hover {
     background-color: white;
     color: rgb(255,94,28);
     text-decoration: none;

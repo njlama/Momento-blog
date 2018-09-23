@@ -9,6 +9,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 import { NavLink } from 'react-router-dom';
 import '../../css/blog.css';
 import createHistory from 'history/createBrowserHistory';
@@ -20,6 +21,7 @@ export default class EachUnpublishedBlog extends React.Component{
 
     state = {
         openRemoveDialogBox: false,
+        openUnpublishedToPublish: false,
     }
 
     removeButtonHandler = () => {
@@ -45,17 +47,30 @@ export default class EachUnpublishedBlog extends React.Component{
     }
 
     editStatusToPublished = () => {
-       
+        this.setState({ openUnpublishedToPublish: true });
         let uid = this.props.uid;
         let id = this.props.id;
         let title = this.props.title;
         let content = this.props.content;
         let status = "published"
         this.props.updateBlogFirebase(uid, id, title, content, status);
+        // alert("published")
     }
+
+    
+
+    handleCloseForUnpublishedToPublish = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        this.setState({ openUnpublishedToPublish: false });
+    };
+    
+    
 
     render(){
         const { title, content } = this.props;
+        // this.testing();
         return(
             <div className="cardDiv">
                 <Card>
@@ -92,28 +107,43 @@ export default class EachUnpublishedBlog extends React.Component{
                     </CardActions>
                 </div>
                 </Card>
+
                 <div>
-
                     {/* Remove dialog box */}
-                <Dialog
-                    open={this.state.openRemoveDialogBox}
-                    onClose={this.handleClose.bind(this)}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                    className="logoutDialog">
-                    <DialogTitle id="alert-dialog-title">
-                        Are sure you want to remove blog?
-                    </DialogTitle>
+                    <Dialog
+                        open={this.state.openRemoveDialogBox}
+                        onClose={this.handleClose.bind(this)}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                        className="logoutDialog">
+                        <DialogTitle id="alert-dialog-title">
+                            Are sure you want to remove blog?
+                        </DialogTitle>
 
-                    <DialogActions className="logoutDialogButtons">
-                        <Button onClick={this.YesForRemoveHandler.bind(this)} color="primary">
-                            Yes
-                        </Button>
-                        <Button onClick={this.handleClose} color="primary" autoFocus>
-                            No
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                        <DialogActions className="logoutDialogButtons">
+                            <Button onClick={this.YesForRemoveHandler.bind(this)} color="primary">
+                                Yes
+                            </Button>
+                            <Button onClick={this.handleClose} color="primary" autoFocus>
+                                No
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+
+                {/* Sucess Snack Bar to confirm unpublished Blog to published Blog  */}
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.openUnpublishedToPublish}
+                    autoHideDuration={6000}
+                    onClose={this.handleCloseForUnpublishedToPublish}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id">Your blog is published</span>}
+                    />
                 </div>
             </div>
         );

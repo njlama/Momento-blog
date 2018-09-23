@@ -33,6 +33,15 @@ export default class EachPublishedBlog extends React.Component{
         this.setState({ openRemoveDialogBox: false }) 
     }
 
+    buttonHandlerToUnpublished = () => {
+        let uid = this.props.uid;
+        let id = this.props.id;
+        let title = this.props.title;
+        let content = this.props.content;
+        let status = "saved"
+        this.props.updateBlogFirebase(uid, id, title, content, status);
+    }
+
     render(){
         const { title, content } = this.props;
         return(
@@ -59,6 +68,10 @@ export default class EachPublishedBlog extends React.Component{
                         <Button size="small" color="primary"
                                 onClick={this.removeButtonHandler.bind(this)}>
                             Remove
+                        </Button>
+                        <Button size="small" color="primary"
+                                onClick={this.buttonHandlerToUnpublished.bind(this)}>
+                            Unpublish
                         </Button>
                     </CardActions>
                 </div>

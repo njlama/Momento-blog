@@ -54,7 +54,6 @@ export const fetchBlogsAfterRemoved = (uid) => async dispatch => {
 
 export const fetchBlogsAfterChanged = (uid) => async dispatch => {
     dbBlogs.child(uid).on("child_changed", snapShot =>{
-        console.log(snapShot.val());
         dispatch({
             type: FETCH_BLOGS_CHANGED, 
             id: snapShot.key, 

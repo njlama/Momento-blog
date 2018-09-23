@@ -70,7 +70,8 @@ class App extends Component {
           <Route exact path="/publishedblogs" 
                   render={() => <PublishedBlog blogs={blogs}
                                 removeBlog={removeBlog}
-                                uid={this.state.uid}/> }/>
+                                uid={this.state.uid}
+                                updateBlogFirebase={updateBlog}/> }/>
           <Route exact path="/unpublishedBlog"
                   render={() => <UnpublishedBlog blogs={blogs} 
                                 removeBlog={removeBlog}

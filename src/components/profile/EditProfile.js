@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { Form, FormGroup, Col, FormControl, Checkbox, Button, ControlLabel } from 'react-bootstrap';
+
+import Snackbar from '@material-ui/core/Snackbar';
 /** firebase */
 import firebase from 'firebase';
 import { database, dbAccounts, dbBlogs} from '../../config';
@@ -11,10 +13,11 @@ export default class EditProfile extends React.Component {
         userName: "",
         userUID: "", 
         userEmail: "",
+        openUnpublishedToPublish: false,
+        isDisableButton: true,
     }
 
     componentWillMount = () => {
-
         firebase.auth().onAuthStateChanged(function(user){
             if(user){
                 this.setState({ 
@@ -26,26 +29,33 @@ export default class EditProfile extends React.Component {
                         userName: snapShot.val().name
                     })
                 });
-            }
-
-          
+            }  
         }.bind(this));
     }
 
     editUserName = (e) => {
+        // console.log(this.state.userName);
         this.setState({
-            userName: e.target.value
+            userName: e.target.value, 
+            isDisableButton: false
         })
     }
 
-    updateUserInfo = () => {
-            dbAccounts.child(this.state.userUID).update({
-                name: this.state.userName
-            })
+    updateUserNameHandler = () => {
+        dbAccounts.child(this.state.userUID).update({
+            name: this.state.userName
+        });
+        this.setState({ openUnpublishedToPublish: true })
+    }
+
+    handleCloseForUnpublishedToPublish = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+          }
+          this.setState({ openUnpublishedToPublish: false });
     }
 
     render(){
-       
         return(
             <div className="profile-edit">
                 <h4>Edit profile here</h4>
@@ -57,7 +67,6 @@ export default class EditProfile extends React.Component {
                         <Col sm={10}>
                         <FormControl type="text" 
                                 onChange={this.editUserName.bind(this)}
-                                // value={this.state.userName} 
                                 defaultValue={this.state.userName}
                                 placeholder="Name" />
                         </Col>
@@ -75,9 +84,26 @@ export default class EditProfile extends React.Component {
                         </Col>
                     </FormGroup>
                     <FormGroup className="editResetButton">
-                        <Button onClick={this.updateUserInfo.bind(this)}>Reset</Button>
+                        <Button 
+                            onClick={this.updateUserNameHandler.bind(this)}
+                            disabled={this.state.isDisableButton}>Save</Button>
                     </FormGroup>
                 </Form>
+
+                {/* SnackBar for name update */}
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.openUnpublishedToPublish}
+                    autoHideDuration={6000}
+                    onClose={this.handleCloseForUnpublishedToPublish}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id">changes are saved</span>}
+                    />
             </div>
         );
     }

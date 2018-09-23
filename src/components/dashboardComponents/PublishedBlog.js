@@ -24,7 +24,8 @@ export default class PublishedBlog extends React.Component {
                                         id={eachBlog.id}
                                         content={eachBlog.content}
                                         uid={this.props.uid}
-                                        removeBlogAction={this.props.removeBlog}/> 
+                                        removeBlogAction={this.props.removeBlog}
+                                        updateBlogFirebase={this.props.updateBlogFirebase}/> 
                     }         
                 });
         };
