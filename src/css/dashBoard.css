@@ -24,6 +24,9 @@ header .sideNavDiv {
     transition: margin-left .5s;
     padding: 0px; 
     font-family: 'Poiret One', cursive;
+    padding-bottom: 27vh;
+    height: 100%;
+    /* position: relative; */
 }
 
 .leftDrawer {
@@ -70,12 +73,22 @@ header .sideNavDiv {
     margin-top: 15px;
 }
 
+/* For Side Nav-link */
 .leftDrawer a:hover {
     background: rgb(228, 221, 221);
     color: darkgray;
     font-size: 1.05em;
     text-decoration: none;
 }
+
+.selected {
+    background: rgb(228, 221, 221);
+    /* background: red; */
+    color: red;
+    font-size: 1.05em;
+    text-decoration: none;
+}
+
 .createBlogDiv button{
     background-color: white;
     margin: auto;
@@ -94,7 +107,8 @@ header .sideNavDiv {
 }
 
 .createBlogDiv {
-    padding-top: 8vh;
+    padding-top: 9vh;
+    padding-bottom: 5vh;
     text-align: center;
     width: 80%;
     margin: auto;

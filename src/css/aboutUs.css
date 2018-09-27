@@ -15,8 +15,12 @@
 }
 
 .aboutUs-header .about-left,
-.aboutUs-header .about-right {
+.aboutUs-header .about-right{
     font-size: 23px;
+}
+.aboutUs-header .about-right span,
+.aboutUs-header .about-left span {
+    color: white;
 }
 
 .aboutUs-header span:hover {
@@ -60,6 +64,12 @@
 
 .aboutUs-contentH3 {
     text-transform: capitalize;
+}
+
+.footer .footer-selected {
+    border-bottom: 1.2px solid white;
+    padding: 5px 5px;
+    font-size: 23px;
 }
 
 /* =================================

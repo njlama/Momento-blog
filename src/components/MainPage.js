@@ -7,6 +7,7 @@ import firebase from 'firebase';
 import '../css/mainPage.css';
 import createHistory from 'history/createBrowserHistory';
 import EntireBlog from './dashboardComponents/EntireBlogs';
+import Footer from './Footer';
 
 const history = createHistory();
 
@@ -44,15 +45,7 @@ export default class HeaderSignup extends React.Component {
                     </div>
                 </div>
             </div >
-                <div className="footer">
-                    <div>
-                        <NavLink to="/main-page/about-us" >About us</NavLink>
-                    </div>
-
-                    <div>
-                        <NavLink to="/main-page/about-developer" >Developer</NavLink>
-                    </div>
-                </div>
+            <Footer/>
             </div>
         );
     }

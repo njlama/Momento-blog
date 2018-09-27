@@ -50,7 +50,6 @@ class App extends Component {
   render() {
     let blogs = this.props.blogs.blogsReducer;
     let updateInfo = this.props.blogs.editReducer;
-    // console.log(blogs);
     const { dispatch } = this.props;
     const addPublishedBlog = bindActionCreators(actionCreators.addPublishedBlog, dispatch);
     const addSavedBlog = bindActionCreators(actionCreators.addSavedBlog, dispatch);

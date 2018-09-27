@@ -126,9 +126,10 @@ class HeaderDB extends React.Component {
                             onClick={this.toggleDrawer('left', false)}
                             onKeyDown={this.toggleDrawer('left', false)}
                             className="leftDrawer" >
-                                <NavLink to="/createNewBlog">Create Blog</NavLink>
-                                <NavLink to="/publishedblogs">Published Blog</NavLink>
-                                <NavLink to="/unpublishedBlog">Unpublished Blog</NavLink>
+                                <NavLink to="/dashboard" activeClassName="selected">Dashboard</NavLink>
+                                <NavLink to="/createNewBlog" activeClassName="selected">Create Blog</NavLink>
+                                <NavLink to="/publishedblogs" activeClassName="selected">Published Blog</NavLink>
+                                <NavLink to="/unpublishedBlog" activeClassName="selected">Unpublished Blog</NavLink>
                                 <NavLink to="#" onClick={this.LogoutHandler.bind(this)}>Log Out</NavLink>
                         </div>
                     </Drawer>

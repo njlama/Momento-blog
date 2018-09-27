@@ -1,16 +1,5 @@
 
-.right-navbar a:hover {
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.mainpage-blogDisplay {
-    margin-top: 10vh;
-    margin-bottom: 10vh;
-    background-color: white;
-}
-
-/* .footer {
+.footer {
     height: 27vh;
     width: 100%;
     margin: auto;
@@ -39,4 +28,4 @@
 
 .footer div a:hover {
     color: white;
-} */
+}
