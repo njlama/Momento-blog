@@ -9,7 +9,6 @@ header .sideNavIcon {
 header .sideNavDiv {
     background-color: rgb(241, 169, 12);
     display: flex;
-    /* justify-content: space-between; */
     padding: 0 50px;
     height: 8vh;
     box-shadow: 0px 5px 8px rgb(195,199,218);

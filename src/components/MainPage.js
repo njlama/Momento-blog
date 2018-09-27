@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import firebase from 'firebase';
 import '../css/mainPage.css';
 import createHistory from 'history/createBrowserHistory';
+import EntireBlog from './dashboardComponents/EntireBlogs';
 
 const history = createHistory();
 
@@ -37,8 +38,21 @@ export default class HeaderSignup extends React.Component {
                         <NavLink to="/signin-login">Create your Blog</NavLink>
                     </div>
                 </div>
-            </div>
-                <div className="footer">Footer</div>
+                <div className="mainpage-blogDisplay">
+                    <div className="dashboard-blogContent">
+                        <EntireBlog/>
+                    </div>
+                </div>
+            </div >
+                <div className="footer">
+                    <div>
+                        <NavLink to="/main-page/about-us" >About us</NavLink>
+                    </div>
+
+                    <div>
+                        <NavLink to="/main-page/about-developer" >Developer</NavLink>
+                    </div>
+                </div>
             </div>
         );
     }

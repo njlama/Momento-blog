@@ -17,6 +17,7 @@ import createHistory from 'history/createBrowserHistory';
 const history = createHistory();
 
 class HeaderDB extends React.Component {
+    
     state = {
         left: false, 
         logout: false,

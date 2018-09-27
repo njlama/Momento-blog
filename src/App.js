@@ -17,6 +17,8 @@ import UpdateBlog from './components/dashboardComponents/UpdateBlog';
 import './App.css';
 
 import createHistory from 'history/createBrowserHistory';
+import AboutUs from './components/AboutUs';
+import DeveloperFooter from './components/DeveloperFooter';
 const history = createHistory();
 
 class App extends Component {
@@ -81,6 +83,8 @@ class App extends Component {
           <Route path="/unpublishedBlog/update-blog"
                   render={() => <UpdateBlog updateInfo={updateInfo}
                                 updateBlog={updateBlog}/>}/>
+          <Route exact path="/main-page/about-us" component={AboutUs}/>
+          <Route path="/main-page/about-developer" component={DeveloperFooter}/>
         </div>
       </BrowserRouter>
     );

@@ -8,40 +8,15 @@ import '../css/dashBoard.css';
 import createHistory from 'history/createBrowserHistory';
 import EachDashBoardBlog from './dashboardComponents/EachDashBoardBlog';
 import GridList from '@material-ui/core/GridList';
+import EntireBlog from './dashboardComponents/EntireBlogs';
 const history = createHistory();
 
 
 class Dashboard extends React.Component {
 
-    state = {
-        entireBlog : []
-    }
 
-    componentWillMount = () => {
-        dbBlogs.on('value', function (snapshot) {         
-            for(let i in snapshot.val()){
-                for(let j in snapshot.val()[i]){
 
-                    if(snapshot.val()[i][j].status === "published"){
-                        let blog = {};
-                        let blogTitle = snapshot.val()[i][j].title;  
-                        let blogContent = snapshot.val()[i][j].content;
-                        blog.title = blogTitle;
-                        blog.content = blogContent;
-                        this.setState({
-                            entireBlog: [...this.state.entireBlog, blog]
-                        })
-                    }
-
-                    
-                }
-            }
-        }.bind(this));
-    }
     render(){
-        let mBlog = this.state.entireBlog.map((blog, index)=> {
-            return <EachDashBoardBlog title={blog.title} content={blog.content}/>
-        })
         return(
             <div className="dashboard-div">
                 <HeaderDB/>
@@ -55,9 +30,10 @@ class Dashboard extends React.Component {
                 </div>
 
                 <div className="dashboard-blogContent">
-                    <GridList cellHeight={160} cols={3}>
+                    <EntireBlog/>
+                    {/* <GridList cellHeight={160} cols={3}>
                         { mBlog }
-                    </GridList>
+                    </GridList> */}
                 </div>
                 
             </div>

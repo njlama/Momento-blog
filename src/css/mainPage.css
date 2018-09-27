@@ -15,3 +15,41 @@ header .left-navbar, .right-navbar{
     text-decoration: none;
     cursor: pointer;
 }
+
+.mainpage-blogDisplay {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    background-color: white;
+}
+
+.footer {
+    height: 27vh;
+    /* text-align: center; */
+    width: 100%;
+    margin: auto;
+    font-size: 22px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgb(241, 169, 12);
+    font-family: Quicksand;  
+    border-top: 1px solid lightgrey;
+    display: flex;
+    padding-left: 15%;
+    padding-top: 8vh;
+ } 
+
+.footer div {
+    width: 20%;
+    
+}
+
+.footer div a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer div a:hover {
+    color: white;
+}
