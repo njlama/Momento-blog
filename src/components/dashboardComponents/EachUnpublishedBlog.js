@@ -11,6 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import { NavLink } from 'react-router-dom';
+import Truncate from 'react-truncate'
 import '../../css/blog.css';
 import createHistory from 'history/createBrowserHistory';
 
@@ -85,7 +86,9 @@ export default class EachUnpublishedBlog extends React.Component{
                             {title}
                             </Typography>
                             <Typography component="p">
-                            {content}
+                                <Truncate lines={3} ellipsis={<span>...<a>Read More</a></span>}>
+                                    {content}
+                                </Truncate>
                             </Typography>
                         </CardContent>
                     </CardActionArea>

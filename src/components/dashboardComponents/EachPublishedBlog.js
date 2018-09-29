@@ -3,12 +3,12 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
+import Truncate from 'react-truncate'
 import '../../css/blog.css';
 
 
@@ -58,7 +58,9 @@ export default class EachPublishedBlog extends React.Component{
                             {title}
                             </Typography>
                             <Typography component="p">
-                            {content}
+                                <Truncate lines={3} ellipsis={<span>...<a>Read More</a></span>}>
+                                    {content}
+                                </Truncate>
                             </Typography>
                         </CardContent>
                     </CardActionArea>

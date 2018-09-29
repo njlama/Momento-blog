@@ -12,8 +12,6 @@
     margin-top: 3em;
 }
 
-
-
 /* blog Edit/Remove/Post button */
 .cardDiv button {
     font-size: 15px;
@@ -22,9 +20,7 @@
 
 .cardDiv h2 {
     font-size: 23px;
-    /* font-weight: bold; */
-    font-family: Quicksand;  
-    /* font-family: Roboto,sans-serif; */
+    font-family: Quicksand; 
 }
 
 .cardDiv p {
@@ -32,16 +28,31 @@
     padding-top: 5px;
     /* color: #424242; */
     color: #212121;
-    /* color: red; */
+    height: 200px;
     font-family: Quicksand;  
     line-height: 1.7em;
+
 }
+
+/* .cardDiv .content-paragraph::before{
+    position: absolute;
+    content: "...";
+    right: 0;
+    bottom: 0;
+} */
 
 .cardDiv .cardActionArea,
 .MuiCardContent-root-96 {
     height: 200px;
-    overflow-y: scroll;
 }
+
+/* .cardDiv .cardActionArea,
+.MuiCardContent-root-96::before{
+    content: "...";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+} */
 
 .cardButtonArea button, a {
     color: rgba(0,0,0,.54);
