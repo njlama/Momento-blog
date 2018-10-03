@@ -10,9 +10,10 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import '../css/createNewBlog.css';
 import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
+import CardMedia from '@material-ui/core/CardMedia';
 
 import firebase from 'firebase';
-import { database, dbBlogs } from '../config';
+import { database, dbAccounts, storage } from '../config';
 
 import createHistory from 'history/createBrowserHistory';
 import ArrowNavToDashboard from './ArrowNavToDashboard';
@@ -26,13 +27,19 @@ class CreateNewBlog extends React.Component {
         titleValue: "", 
         openSnackBar: false,
         openSnackBarForBlogUpload: false,
+
+        image: null, 
+        url: null,
+        progress: 0,
+
+        userName: "",
+        userEmail: "",
     }
 
     titleOnChangeHandler = (e) => {
         this.setState({
             titleValue: e.target.value
         })
-        // console.log(this.state.editorState);
     }
 
     onEditorStateChange = (event) => {
@@ -57,6 +64,43 @@ class CreateNewBlog extends React.Component {
             }    
     }
 
+    /** Uploading image for blog */
+
+    chooseImageHandler = (e) => {
+        this.setState({
+            image: e.target.files[0]
+        })
+    }
+
+    uploadButtonHandler = () => {
+        const image = this.state.image;
+        if(image !== null & image !== ""){
+            const uploadTask = storage.child(image.name).put(image);
+    
+            // state_changed event takes 3 arguments: progress, error, complete
+            uploadTask.on('state_changed',
+                 (snapshot) => {
+                     // progress function
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');   
+                 },
+                 (error) => {
+                     // error function
+                     console.log(error)
+                 },
+                () => {
+                    // complete function. Handles sucessful uploads on complete
+                    storage.child(image.name).getDownloadURL().then(downloadURL =>{
+                        this.setState({
+                            url: downloadURL,
+                        });
+                    });
+    
+                }
+            )
+        }
+    }
+
     /** getting user.uid */
     getUserUID = () => {
         var user = firebase.auth().currentUser;
@@ -72,12 +116,28 @@ class CreateNewBlog extends React.Component {
         var uid = this.getUserUID();
         let titleValue = this.state.titleValue;
         let content = this.state.editorState;
-        
-        if(titleValue !== ""  && content !== "" && titleValue !== null && content !== null){
-            this.props.addPublishedBlog(uid, titleValue, content );
-            this.setState({ openSnackBarForBlogUpload: true});
-            window.location.reload();
+        let image = this.state.url;
+        let date = this.getDate();
+
+        let userName; 
+        if(this.state.userName){
+            userName = this.state.userName;
+        } else {
+            userName = this.state.userEmail
         }
+        let url = typeof image;
+        if(url === "string"){
+            if(titleValue !== ""  && content !== "" && titleValue !== null && content !== null){
+                this.props.addPublishedBlog(uid, titleValue, content, image, date, userName);
+                this.setState({ openSnackBarForBlogUpload: true});
+                window.location.reload();
+            } else {
+                this.setState({ openSnackBar: true})
+            }
+        } else {
+            this.setState({ openSnackBar: true})
+        }
+        
     }
 
     saveButton = () => {
@@ -85,11 +145,28 @@ class CreateNewBlog extends React.Component {
         var uid = this.getUserUID();
         let titleValue = this.state.titleValue;
         let content = this.state.editorState;
-        if(titleValue !== ""  && content !== "" && titleValue !== null && content !== null){
-            this.props.addSavedBlog(uid, titleValue, content);
-            this.setState({ openSnackBarForBlogUpload: true});
-            window.location.reload();
-        } 
+        let image = this.state.url;
+        let date = this.getDate();
+
+        let userName; 
+        if(this.state.userName){
+            userName = this.state.userName;
+        } else {
+            userName = this.state.userEmail
+        }
+
+        let url = typeof image;
+        if(url === "string"){
+            if(titleValue !== ""  && content !== "" && titleValue !== null && content !== null){
+                this.props.addSavedBlog(uid, titleValue, content, image, date, userName);
+                this.setState({ openSnackBarForBlogUpload: true});
+                window.location.reload();
+            } else {
+                this.setState({ openSnackBar: true})
+            }
+        } else {
+            this.setState({ openSnackBar: true})
+        }
     }
 
     /** Error display */
@@ -107,7 +184,29 @@ class CreateNewBlog extends React.Component {
         this.setState({ openSnackBarForBlogUpload: false})
     }
 
+    getDate = () => {
+        let date = new Date().toLocaleDateString()
+        return date;
+    }
+
+    /** Getting userEmail and name */
+    componentWillMount = () => {
+        firebase.auth().onAuthStateChanged(function(user){
+            if(user){
+                this.setState({ 
+                    userEmail: user.email
+                });
+                dbAccounts.child(user.uid).on('value', (snapShot)=>{
+                    this.setState({
+                        userName: snapShot.val().name
+                    })
+                });
+            }  
+        }.bind(this));
+    }
+
     render(){
+        
         return(
             <div>
                 <ArrowNavToDashboard/>
@@ -115,10 +214,21 @@ class CreateNewBlog extends React.Component {
                     <TextField
                         label="Title"
                         margin="normal"
-                        fullWidth
                         className="blogTitle"
                         onChange={this.titleOnChangeHandler.bind(this)}
                         />
+                    <br/>
+                    <div>
+                        <CardMedia
+                            image={this.state.url}
+                            className="image-div"
+                            />
+                        <form>
+                            <label>Upload image</label>
+                            <input type="file" onChange={this.chooseImageHandler.bind(this)}/>
+                        </form>
+                        <button onClick={this.uploadButtonHandler.bind(this)}>UPLOAD</button>
+                    </div>
                     <Editor
                         wrapperClassName="wrapper-class"
                         editorClassName="editor-class"
@@ -156,7 +266,7 @@ class CreateNewBlog extends React.Component {
                             ContentProps={{
                                 'aria-describedby': 'message-id',
                             }}
-                            message={<span id="message-id">Both fields are required!</span>}
+                            message={<span id="message-id">All fields are required!</span>}
                             />
 
                         {/* snackbar for published/saved blog  */}

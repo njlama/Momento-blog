@@ -1,4 +1,4 @@
-import { FETCH_BLOGS, FETCH_BLOGS_AFTER_REMOVED, FETCH_BLOGS_CHANGED, EDIT_REDUCER } from '../actions/types';
+import { FETCH_BLOGS, FETCH_BLOGS_AFTER_REMOVED, FETCH_BLOGS_CHANGED, EDIT_REDUCER, EACH_DATA_REDUCER } from '../actions/types';
 
 export function blogsReducer( state = [], action) {
 
@@ -10,7 +10,10 @@ export function blogsReducer( state = [], action) {
                     title: action.aTitle,
                     content: action.aContent,
                     status: action.aStatus,
-                    id: action.id
+                    id: action.id,
+                    image: action.image,
+                    date: action.date, 
+                    userName: action.userName
                 }
             ];
         
@@ -27,7 +30,10 @@ export function blogsReducer( state = [], action) {
                 if(state[i].id === action.id){
                     state[i].title = action.title,
                     state[i].content = action.content,
-                    state[i].status= action.status
+                    state[i].status= action.status,
+                    state[i].image = action.image,
+                    state[i].date = action.date,
+                    state[i].userName = action.userName
                 }
             }
             return [...state]
@@ -42,8 +48,27 @@ export function editReducer(state={}, action){
             return {
                 title : action.title,
                 content : action.content,
-                id: action.id
-                // status : action.status
+                id: action.id,
+                image: action.image,
+                date: action.date,
+                userName: action.userName
+            }
+        default:
+            return state;
+            
+    }
+}
+
+export function eachDataDisplayReducer(state={}, action){
+    switch(action.type){
+        case EACH_DATA_REDUCER:
+            return {
+                title : action.title,
+                content : action.content,
+                id: action.id,
+                image: action.image,
+                date: action.date,
+                userName: action.userName
             }
         default:
             return state;

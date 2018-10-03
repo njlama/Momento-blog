@@ -19,8 +19,14 @@ export default class EntireBlog extends React.Component {
                         let blog = {};
                         let blogTitle = snapshot.val()[i][j].title;  
                         let blogContent = snapshot.val()[i][j].content;
+                        let blogImage = snapshot.val()[i][j].image;
+                        let blogDate = snapshot.val()[i][j].date;
+                        let blogUserName = snapshot.val()[i][j].userName;
                         blog.title = blogTitle;
                         blog.content = blogContent;
+                        blog.image = blogImage;
+                        blog.date = blogDate;
+                        blog.userName = blogUserName;
                         this.setState({
                             entireBlog: [...this.state.entireBlog, blog]
                         })
@@ -33,9 +39,13 @@ export default class EntireBlog extends React.Component {
     }
 
     render(){
-
+        console.log(this.state.entireBlog);
         let mBlog = this.state.entireBlog.map((blog, index)=> {
-            return <EachDashBoardBlog title={blog.title} content={blog.content}/>
+            return <EachDashBoardBlog title={blog.title} 
+                    content={blog.content}
+                    image={blog.image}
+                    date={blog.date}
+                    user={blog.userName}/>
         })
 
         return(

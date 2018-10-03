@@ -1,0 +1,44 @@
+.cardDiv {
+    /* background: red; */
+    margin-bottom: 5vh;
+    height: 450px;
+    padding: 5px;
+}
+
+.image-div {
+    height: 200px;
+    /* width: 350px; */
+}
+
+.content-area {
+    width: 100%;
+    height: 128px;
+    padding-bottom: 20px;
+}
+
+.content-area .blog-display{
+    text-decoration: none;
+}
+
+.blog-userDate-display{
+    padding: 0 24px 16px 24px;
+    font-size: 12px;
+    font-family: QuickSand;
+    display: flex;
+    justify-content: space-between;
+    color: grey;
+    font-weight: bold;
+}
+
+.blog-userDate-display span {
+
+}
+
+.card-padding .cardHeader-title{
+    padding-bottom: 2px;
+}
+
+.card-padding .cardHeader-title span {
+    font-size: 17px;
+    text-transform: capitalize;
+}

@@ -14,10 +14,11 @@ import { convertToHTML } from 'draft-convert';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import '../../css/createNewBlog.css';
 import TextField from '@material-ui/core/TextField';
+import CardMedia from '@material-ui/core/CardMedia';
 import Snackbar from '@material-ui/core/Snackbar';
 
 import firebase from 'firebase';
-import { database, dbBlogs } from '../../config';
+import { database, dbBlogs, storage } from '../../config';
 
 import createHistory from 'history/createBrowserHistory';
 import ArrowNavToDashboard from '../ArrowNavToDashboard';
@@ -32,12 +33,12 @@ class UpdateBlog extends React.Component {
         let editorState;
 
         if (this.props.updateInfo.content) {
-        const blocksFromHTML = convertFromHTML(this.props.updateInfo.content);
-        const contentState = ContentState.createFromBlockArray(blocksFromHTML);
-        editorState = EditorState.createWithContent(contentState);
+            const blocksFromHTML = convertFromHTML(this.props.updateInfo.content);
+            const contentState = ContentState.createFromBlockArray(blocksFromHTML);
+            editorState = EditorState.createWithContent(contentState);
         }
         else {
-        editorState = EditorState.createEmpty();
+            editorState = EditorState.createEmpty();
         }
 
         // this.state = { editorState };
@@ -45,6 +46,8 @@ class UpdateBlog extends React.Component {
             editorState: editorState,
             editorValue: "",
             titleValue: this.props.updateInfo.title, 
+            image: this.props.updateInfo.image,
+            imageProgressbar: 0,
             openSnackBar: false,
             openSnackBarForBlogUpload: false, 
         }
@@ -64,18 +67,69 @@ class UpdateBlog extends React.Component {
         this.setState({ editorValue: nEditorValue})   
     }
 
+    /** Uploading image for blog */
+
+    chooseImageHandler = (e) => {
+        // console.log(e.target.files[0])
+        this.setState({
+            image: e.target.files[0]
+        })
+    }
+
+    uploadButtonHandler = () => {
+        const image = this.state.image;
+        if(image !== null & image !== ""){
+            const uploadTask = storage.child(image.name).put(image);
+            // state_changed event takes 3 arguments: progress, error, complete
+            uploadTask.on('state_changed',
+                 (snapshot) => {
+                     // progress function
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    if(progress === 100){
+                        this.setState({ imageProgressbar: progress})
+                    }
+                    
+                },
+                (error) => {console.log(error)},
+                () => {
+                    // complete function. Handles sucessful uploads on complete
+                    storage.child(image.name).getDownloadURL().then(downloadURL =>{
+                        this.setState({
+                            image: downloadURL
+                        });
+                    });
+            });
+        };
+    };
+
     publishButton = (param, event) => {
         let uid = this.getUserUID();
         let blogID = this.props.updateInfo.id;
         let title = this.state.titleValue;
         let content = this.state.editorValue;
+        let user = this.props.updateInfo.userName;
+        let date = new Date().toLocaleDateString();
+        let url = this.state.image;
         if ( content === ""){
             content = this.props.updateInfo.content
-        }
-        let state = "published"
-        this.props.updateBlog(uid, blogID, title, content, state);
-        history.push("/publishedblogs");
-        window.location.reload();
+        };
+        let state = "published";
+        let mImage = typeof this.state.image;
+        if(mImage === "string"){
+            if(title !== "" && content !== "" && title !== null && content !== null){
+                this.props.updateBlog(uid, blogID, title, content, state, url, date, user);
+                this.setState({ openSnackBarForBlogUpload: true})
+                history.push("/publishedblogs");
+                window.location.reload();
+            } else {
+                // console.log("Error on title and content value");
+                this.setState({ openSnackBar: true});
+            }
+        } else {
+            // console.log("need to upload image");
+            this.setState({ openSnackBar: true});
+        }       
     }
 
     saveButton = () => {
@@ -83,24 +137,38 @@ class UpdateBlog extends React.Component {
         let blogID = this.props.updateInfo.id;
         let title = this.state.titleValue;
         let content = this.state.editorValue;
+
+        let url = this.state.image;
         let state = "saved"
         if ( content === ""){
             content = this.props.updateInfo.content
         }
-        this.props.updateBlog(uid, blogID, title, content, state);
+        let mImage = typeof this.state.image;
 
-        history.push("/unpublishedBlog");
-        window.location.reload();
+        let date = new Date().toLocaleDateString();
+        let user = this.props.updateInfo.userName;
+        if(mImage === "string"){
+            if(title !== "" && content !== "" && title !== null && content !== null){
+                this.props.updateBlog(uid, blogID, title, content, state, url, date, user);
+                this.setState({ openSnackBarForBlogUpload: true})
+                history.push("/unpublishedBlog");
+                window.location.reload();
+            } else {
+                this.setState({ openSnackBar: true});
+            }
+        } else {
+            this.setState({ openSnackBar: true});
+        } 
     }
 
     /** func to check empty input field  */
     inputErrorDisplay = (param, event) => {
-    if ( this.state.titleValue.trim() !== "" && param.trim() !== ""){
-        console.log("You got both values")
-    } else {
-        console.log("both field are required");
-        this.setState({ openSnackBar: true})
-    };
+        if ( this.state.titleValue.trim() !== "" && param.trim() !== ""){
+            console.log("You got both values")
+        } else {
+            console.log("both field are required");
+            this.setState({ openSnackBar: true})
+        };
     }
 
     /** getting user.uid */
@@ -129,7 +197,7 @@ class UpdateBlog extends React.Component {
     }
 
     render(){
-        console.log(this.props.updateInfo.id);
+        // console.log(this.props.updateInfo.image);
         return(
             <div>
                 <ArrowNavToDashboard/>
@@ -141,14 +209,20 @@ class UpdateBlog extends React.Component {
                         className="blogTitle"
                         value={this.state.titleValue}
                         onChange={this.titleOnChangeHandler.bind(this)}/>
+                    <CardMedia
+                        image={this.state.image}
+                        className="image-div"
+                        />
+                    <form>
+                        <label>Upload image</label>
+                        <input type="file" onChange={this.chooseImageHandler.bind(this)}/>
+                    </form>
+                    <button onClick={this.uploadButtonHandler.bind(this)}>UPLOAD</button>
                     <Editor
                         wrapperClassName="wrapper-class"
                         editorClassName="editor-class"
                         toolbarClassName="toolbar-class"
-                        // defaultEditorState={this.state.editorState}
                         defaultEditorState={this.state.editorState}
-                        // onEditorStateChange={this._onChange.bind(this)}
-                        // defaultValue={this.state.editorState}
                         onEditorStateChange={this.handleChange.bind(this)}
                         autoFocus
                         />
@@ -171,7 +245,7 @@ class UpdateBlog extends React.Component {
                         {/* snackbar */}
 
                         {/* snackbar for empty input field  */}
-                        {/* <Snackbar
+                        <Snackbar
                             anchorOrigin={{
                                 vertical: 'bottom',
                                 horizontal: 'left',
@@ -182,11 +256,11 @@ class UpdateBlog extends React.Component {
                             ContentProps={{
                                 'aria-describedby': 'message-id',
                             }}
-                            message={<span id="message-id">Both fields are required!</span>}
-                            /> */}
+                            message={<span id="message-id">All fields are required!</span>}
+                            />
 
                         {/* snackbar for published/saved blog  */}
-                        {/* <Snackbar
+                        <Snackbar
                             anchorOrigin={{
                                 vertical: 'bottom',
                                 horizontal: 'left',
@@ -198,7 +272,7 @@ class UpdateBlog extends React.Component {
                                 'aria-describedby': 'message-id',
                             }}
                             message={<span id="message-id">Blog is uploaded!</span>}
-                            /> */}
+                            />
 
                 </div>
             </div>

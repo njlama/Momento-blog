@@ -19,6 +19,7 @@ import './App.css';
 import createHistory from 'history/createBrowserHistory';
 import AboutUs from './components/AboutUs';
 import DeveloperFooter from './components/DeveloperFooter';
+import EachBlogDisplay from './components/dashboardComponents/EachBlogDisplay';
 const history = createHistory();
 
 class App extends Component {
@@ -50,12 +51,14 @@ class App extends Component {
   render() {
     let blogs = this.props.blogs.blogsReducer;
     let updateInfo = this.props.blogs.editReducer;
+    let blogDisplayInfo = this.props.blogs.eachDataDisplayReducer;
     const { dispatch } = this.props;
     const addPublishedBlog = bindActionCreators(actionCreators.addPublishedBlog, dispatch);
     const addSavedBlog = bindActionCreators(actionCreators.addSavedBlog, dispatch);
     const removeBlog = bindActionCreators(actionCreators.removeBlog, dispatch);
     const updateBlog = bindActionCreators(actionCreators.updateBlog, dispatch);
     const updateUnpublishedBlog = bindActionCreators(actionCreators.updateUnpublishedBlog, dispatch);
+    const eachDataDisplay = bindActionCreators(actionCreators.eachDataDisplay, dispatch);
     return (
       <BrowserRouter>
         <div>
@@ -78,10 +81,13 @@ class App extends Component {
                                 removeBlog={removeBlog}
                                 uid={this.state.uid}
                                 updateUnpublishedBlog={updateUnpublishedBlog}
-                                updateBlogFirebase={updateBlog}/>}/>
+                                updateBlogFirebase={updateBlog}
+                                dataDisplay={eachDataDisplay}/>}/>
           <Route path="/unpublishedBlog/update-blog"
                   render={() => <UpdateBlog updateInfo={updateInfo}
                                 updateBlog={updateBlog}/>}/>
+          <Route exact path="/dashboard/blog-display" 
+                  render={()=> <EachBlogDisplay blogDisplayInfo={blogDisplayInfo}/>}/>
           <Route exact path="/main-page/about-us" component={AboutUs}/>
           <Route path="/main-page/about-developer" component={DeveloperFooter}/>
         </div>

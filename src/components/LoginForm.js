@@ -7,6 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { database } from '../config';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
 
 import { NavLink } from 'react-router-dom';
@@ -155,8 +156,7 @@ export default class LoginForm extends React.Component {
                                 id="adornment-password" 
                                 value={this.state.pass}
                                 onChange={this.passOnchangeHandler.bind(this)}/>
-                    </FormControl>
-                    {/* <div className="errorMessage">{this.state.error}</div> */}
+                    </FormControl><br/>
 
                     <div>
                         <Button variant="outlined" 

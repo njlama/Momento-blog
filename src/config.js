@@ -13,3 +13,4 @@ var config = {
   export const database = firebase.database().ref();
   export const dbAccounts = database.child("/accounts");
   export const dbBlogs = database.child("/blogs");
+  export const storage = firebase.storage().ref('/images/'); 

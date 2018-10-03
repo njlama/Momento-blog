@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import {blogsReducer, editReducer } from './dataReducers';
+import {blogsReducer, editReducer, eachDataDisplayReducer } from './dataReducers';
 
 
-export default combineReducers({ blogsReducer, editReducer });
+export default combineReducers({ blogsReducer, editReducer, eachDataDisplayReducer});
 

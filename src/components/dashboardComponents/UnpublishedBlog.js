@@ -20,19 +20,24 @@ export default class UnpublishedBlog extends React.Component {
             blogPost = this.props.blogs
                 .map((eachBlog, index) => {
                     if( eachBlog.status === "saved"){
+                        
                        return <EachUnpublishedBlog key={index} 
                                         id={eachBlog.id}
                                         title={eachBlog.title}
                                         status={eachBlog.status}
                                         content={eachBlog.content}
+                                        image={eachBlog.image}
+                                        user={eachBlog.userName}
+                                        date={eachBlog.date}
                                         uid={this.props.uid}
                                         removeBlogAction={this.props.removeBlog}
                                         updateUnpublishedBlog={this.props.updateUnpublishedBlog}
-                                        updateBlogFirebase={this.props.updateBlogFirebase}/> 
-                    }
-                    
+                                        updateBlogFirebase={this.props.updateBlogFirebase}
+                                        dataDisplay={this.props.dataDisplay}/> 
+                    }     
                 });
         }
+        // console.log(this.props.dataDisplay);
         
         return(
             <div>
@@ -42,8 +47,7 @@ export default class UnpublishedBlog extends React.Component {
                     <h2>Unpublished Blogs</h2>
                 </div>
                <div className="blogDisplayDiv">
-                    <GridList cellHeight={160} cols={3}>
-                        
+                    <GridList cellHeight={160} cols={3}>                       
                         { blogPost }
                     </GridList>
                 </div>       

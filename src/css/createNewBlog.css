@@ -1,7 +1,8 @@
 .blogEditor {
     width: 60%;
-    height: 70vh; 
+    height: 100vh; 
     margin: auto;
+    margin-bottom: 5vh;
     /* background: aliceblue; */
 }
 

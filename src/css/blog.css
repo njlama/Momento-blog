@@ -26,33 +26,21 @@
 .cardDiv p {
     font-size: 17px;
     padding-top: 5px;
-    /* color: #424242; */
-    color: #212121;
+    color: grey;
     height: 200px;
-    font-family: Quicksand;  
+    /* font-family: Quicksand;   */
+    font-family: 'Text Me One', sans-serif;;
     line-height: 1.7em;
-
 }
 
-/* .cardDiv .content-paragraph::before{
-    position: absolute;
-    content: "...";
-    right: 0;
-    bottom: 0;
-} */
+.cardDiv p::first-letter{
+    text-transform: capitalize;
+}
 
 .cardDiv .cardActionArea,
 .MuiCardContent-root-96 {
     height: 200px;
 }
-
-/* .cardDiv .cardActionArea,
-.MuiCardContent-root-96::before{
-    content: "...";
-    position: absolute;
-    right: 0;
-    bottom: 0;
-} */
 
 .cardButtonArea button, a {
     color: rgba(0,0,0,.54);

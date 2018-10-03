@@ -1,4 +1,5 @@
 export const FETCH_BLOGS = 'blogs/FETCH_BLOGS';
 export const FETCH_BLOGS_AFTER_REMOVED = 'blogs/FETCH_BLOGS_AFTER_REMOVED';
 export const FETCH_BLOGS_CHANGED = 'blogs/FETCH_BLOGS_CHANGED';
-export const EDIT_REDUCER = 'blogs/EDIT_REDUCER'
+export const EDIT_REDUCER = 'blogs/EDIT_REDUCER';
+export const EACH_DATA_REDUCER = 'blogs/EACH_DATA_REDUCER';

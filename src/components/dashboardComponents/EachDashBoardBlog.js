@@ -3,29 +3,42 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-// import ReadMoreReact from 'read-more-react';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
 import Truncate from 'react-truncate'
 
 import '../../css/blog.css';
+import '../../css/eachPublishedBlog.css';
 
 
 export default class EachDashBoardBlog extends React.Component{
 
+
+    expandContentAreaHandler = () => {
+        console.log("your page is comming soon")
+    }
+    
     render(){
-        const { title, content } = this.props;
+        const { title, content, image, date, user } = this.props;
         return(
             <div className="cardDiv">
                 <Card className="card-padding">
+                    <CardHeader
+                        title={title}
+                        className="cardHeader-title"
+                        />
+                    <div className="blog-userDate-display">
+                        <span>By {user}</span>
+                        <span>{date}</span>
+                    </div>
+                    <CardMedia
+                        image={image}
+                        className="image-div"
+                        />
                     <div className="cardActionArea">
-                        <CardActionArea>
-                            {/* Image goes here */}
-                            {/* <CardMedia
-                                title="Contemplative Reptile"
-                            /> */}
+                        <CardActionArea className="content-area"
+                            onClick={this.expandContentAreaHandler.bind(this)}>
                             <CardContent>
-                                <Typography gutterBottom variant="headline" component="h2">
-                                {title}
-                                </Typography>
                                 <Typography component="p" className="content-paragraph">
                                     <Truncate lines={3} 
                                         ellipsis={<span>. . . <a>Read More</a></span>}>

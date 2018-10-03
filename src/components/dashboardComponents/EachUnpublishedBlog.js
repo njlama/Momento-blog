@@ -12,7 +12,10 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import { NavLink } from 'react-router-dom';
 import Truncate from 'react-truncate'
-import '../../css/blog.css';
+import CardHeader from '@material-ui/core/CardHeader';
+// import '../../css/blog.css';
+import '../../css/eachPublishedBlog.css';
+
 import createHistory from 'history/createBrowserHistory';
 
 const history = createHistory();
@@ -44,7 +47,10 @@ export default class EachUnpublishedBlog extends React.Component{
         let id= this.props.id;
         let title = this.props.title;
         let content = this.props.content;
-        this.props.updateUnpublishedBlog(title, content, id);
+        let image = this.props.image;
+        let user = this.props.user;
+        let date = new Date().toLocaleDateString();
+        this.props.updateUnpublishedBlog(title, content, id, image, date, user);
     }
 
     editStatusToPublished = () => {
@@ -53,9 +59,11 @@ export default class EachUnpublishedBlog extends React.Component{
         let id = this.props.id;
         let title = this.props.title;
         let content = this.props.content;
-        let status = "published"
-        this.props.updateBlogFirebase(uid, id, title, content, status);
-        // alert("published")
+        let image = this.props.image;
+        let user = this.props.user;
+        let date = new Date().toLocaleDateString();
+        let status = "published";
+        this.props.updateBlogFirebase(uid, id, title, content, status, image, date, user);
     }
 
     
@@ -66,33 +74,50 @@ export default class EachUnpublishedBlog extends React.Component{
         }
         this.setState({ openUnpublishedToPublish: false });
     };
+
+    expandContentAreaHandler = () => {
+        console.log("your page is comming soon");
+        let id= this.props.id;
+        let title = this.props.title;
+        let user = this.props.user;
+        let date = this.props.date;
+        let image = this.props.image;
+        let content = this.props.content;
+        this.props.dataDisplay(title, content, id, image, date, user);
+    }
     
     
 
     render(){
-        const { title, content } = this.props;
-        // this.testing();
+        const { title, content, image, date, user } = this.props;
         return(
             <div className="cardDiv">
-                <Card>
-                <div className="cardActionArea">
-                    <CardActionArea>
-                        {/* Image goes here */}
-                        {/* <CardMedia
-                            title="Contemplative Reptile"
-                        /> */}
+                <Card className="card-padding">
+                    <CardHeader
+                        title={title}
+                        className="cardHeader-title"
+                        />
+                     <div className="blog-userDate-display">
+                        <span>By {user}</span>
+                        <span>{date}</span>
+                    </div>
+                    <CardMedia
+                        image={image}
+                        className="image-div"
+                        />
+                    <CardActionArea className="content-area"
+                        onClick={this.expandContentAreaHandler.bind(this)}>
                         <CardContent>
-                            <Typography gutterBottom variant="headline" component="h2">
-                            {title}
-                            </Typography>
-                            <Typography component="p">
-                                <Truncate lines={3} ellipsis={<span>...<a>Read More</a></span>}>
-                                    {content}
-                                </Truncate>
+                            <Typography>
+                                <NavLink to="/dashboard/blog-display" className="blog-display">
+                                    <Truncate lines={3} ellipsis={<span>...<a>Read More</a></span>}>
+                                        {content}
+                                        Edit
+                                    </Truncate>
+                                </NavLink>
                             </Typography>
                         </CardContent>
                     </CardActionArea>
-                </div>
                 <div className="cardButtonArea">
                     <CardActions>
                         <Button size="small" color="primary"

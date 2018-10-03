@@ -23,7 +23,10 @@ export default class PublishedBlog extends React.Component {
                                         title={eachBlog.title}
                                         id={eachBlog.id}
                                         content={eachBlog.content}
+                                        image={eachBlog.image}
                                         uid={this.props.uid}
+                                        date={eachBlog.date}
+                                        user={eachBlog.userName}
                                         removeBlogAction={this.props.removeBlog}
                                         updateBlogFirebase={this.props.updateBlogFirebase}/> 
                     }         
