@@ -11,7 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import CardHeader from '@material-ui/core/CardHeader';
 import Truncate from 'react-truncate';
-// import '../../css/blog.css';
+import { NavLink } from 'react-router-dom';
 import '../../css/eachPublishedBlog.css';
 
 
@@ -49,8 +49,13 @@ export default class EachPublishedBlog extends React.Component{
     }
 
     expandContentAreaHandler = () => {
-        console.log("your page is comming soon");
-        
+        let id= this.props.id;
+        let title = this.props.title;
+        let user = this.props.user;
+        let date = this.props.date;
+        let image = this.props.image;
+        let content = this.props.content;
+        this.props.dataDisplay(title, content, id, image, date, user);   
     }
 
     render(){
@@ -74,9 +79,11 @@ export default class EachPublishedBlog extends React.Component{
                         onClick={this.expandContentAreaHandler.bind(this)}>
                         <CardContent>
                             <Typography>
-                                <Truncate lines={3} ellipsis={<span>...<a>Read More</a></span>}>
-                                    {content}
-                                </Truncate>
+                                <NavLink to="/dashboard/blog-display" className="blog-display">
+                                    <Truncate lines={3} ellipsis={<span>...<a>Read More</a></span>}>
+                                        {content}
+                                    </Truncate>
+                                </NavLink>
                             </Typography>
                         </CardContent>
                     </CardActionArea>

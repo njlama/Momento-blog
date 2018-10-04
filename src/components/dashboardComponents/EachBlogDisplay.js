@@ -49,7 +49,6 @@ export default class EachBlogDisplay extends React.Component{
         }
 
         if(isEmpty(blog) !== true){
-            console.log("empty");
             history.goBack();
         }
     }
@@ -60,7 +59,6 @@ export default class EachBlogDisplay extends React.Component{
         const image = blogDisplayInfo.image;
         const date = blogDisplayInfo.date;
         const user = blogDisplayInfo.userName;
-        // console.log(blogDisplayInfo.length);
         return(
             <div>
                 <HeaderDB/>

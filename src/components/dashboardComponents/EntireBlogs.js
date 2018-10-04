@@ -14,7 +14,6 @@ export default class EntireBlog extends React.Component {
         dbBlogs.on('value', function (snapshot) {         
             for(let i in snapshot.val()){
                 for(let j in snapshot.val()[i]){
-
                     if(snapshot.val()[i][j].status === "published"){
                         let blog = {};
                         let blogTitle = snapshot.val()[i][j].title;  
@@ -30,22 +29,20 @@ export default class EntireBlog extends React.Component {
                         this.setState({
                             entireBlog: [...this.state.entireBlog, blog]
                         })
-                    }
-
-                    
+                    }    
                 }
             }
         }.bind(this));
     }
 
     render(){
-        console.log(this.state.entireBlog);
         let mBlog = this.state.entireBlog.map((blog, index)=> {
             return <EachDashBoardBlog title={blog.title} 
                     content={blog.content}
                     image={blog.image}
                     date={blog.date}
-                    user={blog.userName}/>
+                    user={blog.userName}
+                    dataDisplay={this.props.dataDisplay}/>
         })
 
         return(

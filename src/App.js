@@ -41,8 +41,6 @@ class App extends Component {
         fetchBlogsAfterRemoved(user.uid);
         const fetchBlogsAfterChanged = bindActionCreators(actionCreators.fetchBlogsAfterChanged, dispatch);
         fetchBlogsAfterChanged(user.uid);        
-      } else {
-        console.log("USer not present")
       }
     })
   }
@@ -64,7 +62,8 @@ class App extends Component {
         <div>
           <Route exact path="/" component={HeaderSignup}/>
           <Route exact path="/signin-login" component={LoginForm}/>
-          <Route exact path="/dashboard" component={Dashboard}/>
+          <Route exact path="/dashboard" 
+                  render ={()=> <Dashboard  dataDisplay={eachDataDisplay}/>}/>
 
           <Route exact path="/createNewBlog" 
                   render={() => <CreateNewBlog addPublishedBlog={addPublishedBlog}
@@ -75,7 +74,8 @@ class App extends Component {
                   render={() => <PublishedBlog blogs={blogs}
                                 removeBlog={removeBlog}
                                 uid={this.state.uid}
-                                updateBlogFirebase={updateBlog}/> }/>
+                                updateBlogFirebase={updateBlog}
+                                dataDisplay={eachDataDisplay}/> }/>
           <Route exact path="/unpublishedBlog"
                   render={() => <UnpublishedBlog blogs={blogs} 
                                 removeBlog={removeBlog}

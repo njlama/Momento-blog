@@ -76,7 +76,6 @@ export default class EachUnpublishedBlog extends React.Component{
     };
 
     expandContentAreaHandler = () => {
-        console.log("your page is comming soon");
         let id= this.props.id;
         let title = this.props.title;
         let user = this.props.user;

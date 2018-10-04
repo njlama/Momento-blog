@@ -16,7 +16,8 @@ import '../../css/createNewBlog.css';
 import TextField from '@material-ui/core/TextField';
 import CardMedia from '@material-ui/core/CardMedia';
 import Snackbar from '@material-ui/core/Snackbar';
-
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import firebase from 'firebase';
 import { database, dbBlogs, storage } from '../../config';
 
@@ -47,8 +48,9 @@ class UpdateBlog extends React.Component {
             editorValue: "",
             titleValue: this.props.updateInfo.title, 
             image: this.props.updateInfo.image,
-            imageProgressbar: 0,
+            // imageProgressbar: 0,
             openSnackBar: false,
+            progress: 0,
             openSnackBarForBlogUpload: false, 
         }
     }
@@ -70,7 +72,6 @@ class UpdateBlog extends React.Component {
     /** Uploading image for blog */
 
     chooseImageHandler = (e) => {
-        // console.log(e.target.files[0])
         this.setState({
             image: e.target.files[0]
         })
@@ -84,12 +85,8 @@ class UpdateBlog extends React.Component {
             uploadTask.on('state_changed',
                  (snapshot) => {
                      // progress function
-                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
-                    if(progress === 100){
-                        this.setState({ imageProgressbar: progress})
-                    }
-                    
+                    var mProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    this.setState({ progress: mProgress})   
                 },
                 (error) => {console.log(error)},
                 () => {
@@ -123,11 +120,9 @@ class UpdateBlog extends React.Component {
                 history.push("/publishedblogs");
                 window.location.reload();
             } else {
-                // console.log("Error on title and content value");
                 this.setState({ openSnackBar: true});
             }
         } else {
-            // console.log("need to upload image");
             this.setState({ openSnackBar: true});
         }       
     }
@@ -197,7 +192,6 @@ class UpdateBlog extends React.Component {
     }
 
     render(){
-        // console.log(this.props.updateInfo.image);
         return(
             <div>
                 <ArrowNavToDashboard/>
@@ -213,11 +207,17 @@ class UpdateBlog extends React.Component {
                         image={this.state.image}
                         className="image-div"
                         />
-                    <form>
-                        <label>Upload image</label>
-                        <input type="file" onChange={this.chooseImageHandler.bind(this)}/>
-                    </form>
-                    <button onClick={this.uploadButtonHandler.bind(this)}>UPLOAD</button>
+                    <LinearProgress variant="determinate"
+                             value={this.state.progress} 
+                             className="progress"/>
+                    <form className="imageforNewBlog">
+                        <Button variant="contained" 
+                            onClick={this.uploadButtonHandler.bind(this)}>
+                            <input type="file" onChange={this.chooseImageHandler.bind(this)}/>
+                            <CloudUploadIcon/>
+                        </Button>
+                    </form> 
+
                     <Editor
                         wrapperClassName="wrapper-class"
                         editorClassName="editor-class"

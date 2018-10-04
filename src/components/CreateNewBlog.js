@@ -11,6 +11,8 @@ import '../css/createNewBlog.css';
 import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
 import CardMedia from '@material-ui/core/CardMedia';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import firebase from 'firebase';
 import { database, dbAccounts, storage } from '../config';
@@ -56,10 +58,8 @@ class CreateNewBlog extends React.Component {
     /** func for empty input field  */
     inputErrorDisplay = () => {
         if ( this.state.titleValue !== "" && this.state.editorState !== "" && this.state.editorState !== null && this.state.editorState !== ""){
-            console.log("You got both values")
-            console.log(this.state.editorState)
+           
         } else {
-                console.log("Requires both values")
                 this.setState({ openSnackBar: true})
             }    
     }
@@ -81,8 +81,8 @@ class CreateNewBlog extends React.Component {
             uploadTask.on('state_changed',
                  (snapshot) => {
                      // progress function
-                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');   
+                    var mProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100; 
+                    this.setState({ progress: mProgress}) 
                  },
                  (error) => {
                      // error function
@@ -130,6 +130,7 @@ class CreateNewBlog extends React.Component {
             if(titleValue !== ""  && content !== "" && titleValue !== null && content !== null){
                 this.props.addPublishedBlog(uid, titleValue, content, image, date, userName);
                 this.setState({ openSnackBarForBlogUpload: true});
+                // history.push('/publishedblogs')
                 window.location.reload();
             } else {
                 this.setState({ openSnackBar: true})
@@ -160,6 +161,7 @@ class CreateNewBlog extends React.Component {
             if(titleValue !== ""  && content !== "" && titleValue !== null && content !== null){
                 this.props.addSavedBlog(uid, titleValue, content, image, date, userName);
                 this.setState({ openSnackBarForBlogUpload: true});
+                // history.push("/unpublishedblogs");
                 window.location.reload();
             } else {
                 this.setState({ openSnackBar: true})
@@ -216,25 +218,30 @@ class CreateNewBlog extends React.Component {
                         margin="normal"
                         className="blogTitle"
                         onChange={this.titleOnChangeHandler.bind(this)}
-                        />
+                        fullWidth />
                     <br/>
                     <div>
                         <CardMedia
-                            image={this.state.url}
-                            className="image-div"
-                            />
-                        <form>
-                            <label>Upload image</label>
-                            <input type="file" onChange={this.chooseImageHandler.bind(this)}/>
-                        </form>
-                        <button onClick={this.uploadButtonHandler.bind(this)}>UPLOAD</button>
+                            image={ this.state.url}
+                            className="image-div picture-div"
+                        />
+                        <LinearProgress variant="determinate"
+                             value={this.state.progress} 
+                             className="progress"/>
+                        <form className="imageforNewBlog">
+                            <Button variant="contained" 
+                                onClick={this.uploadButtonHandler.bind(this)}>
+                                <input type="file" onChange={this.chooseImageHandler.bind(this)}/>
+                                <CloudUploadIcon/>
+                            </Button>
+                        </form> 
                     </div>
                     <Editor
                         wrapperClassName="wrapper-class"
                         editorClassName="editor-class"
                         toolbarClassName="toolbar-class"
-                    EditorState={this.state.editorState}
-                    onEditorStateChange={this.onEditorStateChange.bind(this)}
+                        EditorState={this.state.editorState}
+                        onEditorStateChange={this.onEditorStateChange.bind(this)}
                         />
 
                         <div className="buttonDiv">
