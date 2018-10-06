@@ -1,0 +1,120 @@
+.drawer-height .profilePicture {
+    min-height: 250px;
+    text-align: center; 
+    position: relative;
+}
+
+.profilePicture .drawerUserEmail {
+    margin-top: auto;
+    margin: auto;
+    margin-bottom: 5px;
+    width: 60%;
+    font-size: 14px;
+    border: 1.49px solid lightgray;
+    border-radius: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    background-color: lightgray;
+    cursor: pointer;
+    position: absolute;
+    left: 0; right: 0; bottom: 1px;
+}
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profilePicture a:hover {
+    text-decoration: none;
+    color: rgb(59, 57, 57);
+}
+
+.drawer-height .leftDrawer{
+    padding-top: 14px;
+    /* height: 60%; */
+}
+.border-div{
+    width: 100%;
+    height:2px;
+    background-color: lightgray;
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+}
+.leftDrawer a {
+    padding: 1em 10em 1em 4em;
+    text-decoration: none;
+    font-size: 1em;
+    color: black;
+    display: block;
+    width: 100%;
+}
+
+/* For Side Nav-link */
+.leftDrawer a:hover {
+    background: rgb(228, 221, 221);
+    color: darkgray;
+    font-size: 1.05em;
+    text-decoration: none;
+}
+
+.selected {
+    background: rgb(228, 221, 221);
+    /* background: red; */
+    color: red;
+    font-size: 1.05em;
+    text-decoration: none;
+}
+
+/* .drawer-maindiv, */
+.drawer-height {
+    min-height: 725px;
+}
+
+.profilePicture .fileinputs {
+    position: relative;
+    text-align: center;
+    /* margin: auto; */
+}
+
+input.file{
+    margin-top: 5px;
+    margin-left: 101px;
+	position: absolute;
+    text-align: right;
+    top: 0px;
+	left: 0px;
+    opacity: 0;
+    z-index: 2;
+    width: 96px;
+    height: 30px;
+}
+
+div.fakefile {
+    /* width: 142px; */
+    height: 36px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+    z-index: 1;
+    margin-left: 101px;
+    display: flex;
+    /* border: 1px solid lightgrey; */
+}
+div.fakefile .MuiButton-contained-12{
+    box-shadow: none;
+    background-color: white;
+}
+
+div.fakefile .MuiButton-root-1{
+    padding-left: 0px;
+}
+
+div.fakefile input {
+    width: 106px;
+    padding-left: 5px;
+    /* overflow: wrap; */
+}
+

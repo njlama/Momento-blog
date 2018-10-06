@@ -29,42 +29,6 @@ header .sideNavDiv {
     /* position: relative; */
 }
 
-.leftDrawer {
-    padding-top: 14px;
-}
-.leftDrawer a {
-    padding: 1em 10em 1em 4em;
-    text-decoration: none;
-    font-size: 1em;
-    color: black;
-    display: block;
-    width: 100%;
-}
-
-.profilePicture {
-    height: 17%;
-    border-bottom:  1px solid grey;
-}
-
-.profilePicture .drawerUserEmail {
-    margin-top: 95px;
-    margin-left: 35px;
-    width: 60%;
-
-    font-size: 14px;
-    border: 1.49px solid lightgrey;
-    border-radius: 25px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    text-align: center;
-    background-color: lightgray;
-    cursor: pointer;
-}
-
-.profilePicture a:hover {
-    text-decoration: none;
-    color: rgb(59, 57, 57);
-}
 
 .menu {
     color: white;
@@ -73,21 +37,6 @@ header .sideNavDiv {
     margin-top: 15px;
 }
 
-/* For Side Nav-link */
-.leftDrawer a:hover {
-    background: rgb(228, 221, 221);
-    color: darkgray;
-    font-size: 1.05em;
-    text-decoration: none;
-}
-
-.selected {
-    background: rgb(228, 221, 221);
-    /* background: red; */
-    color: red;
-    font-size: 1.05em;
-    text-decoration: none;
-}
 
 .createBlogDiv button{
     background-color: white;

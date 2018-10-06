@@ -67,15 +67,19 @@ class CreateNewBlog extends React.Component {
     /** Uploading image for blog */
 
     chooseImageHandler = (e) => {
-        this.setState({
-            image: e.target.files[0]
-        })
+        // if(e.target.files[0].type === "image/jpeg" ||
+        // e.target.files[0].type === "image/jpg" ||
+        // e.target.files[0].type === "image/png"){
+            this.setState({
+                image: e.target.files[0]
+            })
+        
     }
 
     uploadButtonHandler = () => {
         const image = this.state.image;
         if(image !== null & image !== ""){
-            const uploadTask = storage.child(image.name).put(image);
+            const uploadTask = storage.child(image.name+"/hooo").put(image);
     
             // state_changed event takes 3 arguments: progress, error, complete
             uploadTask.on('state_changed',
@@ -91,11 +95,11 @@ class CreateNewBlog extends React.Component {
                 () => {
                     // complete function. Handles sucessful uploads on complete
                     storage.child(image.name).getDownloadURL().then(downloadURL =>{
+                        console.log(downloadURL);
                         this.setState({
                             url: downloadURL,
                         });
-                    });
-    
+                    });   
                 }
             )
         }
@@ -231,7 +235,8 @@ class CreateNewBlog extends React.Component {
                         <form className="imageforNewBlog">
                             <Button variant="contained" 
                                 onClick={this.uploadButtonHandler.bind(this)}>
-                                <input type="file" onChange={this.chooseImageHandler.bind(this)}/>
+                                <input type="file" multiple accept="image/*"
+                                    onChange={this.chooseImageHandler.bind(this)}/>
                                 <CloudUploadIcon/>
                             </Button>
                         </form> 

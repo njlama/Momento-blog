@@ -14,3 +14,4 @@ var config = {
   export const dbAccounts = database.child("/accounts");
   export const dbBlogs = database.child("/blogs");
   export const storage = firebase.storage().ref('/images/'); 
+  export const ppStorage = firebase.storage().ref('/profilePicture/'); 
