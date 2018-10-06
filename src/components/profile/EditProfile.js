@@ -57,8 +57,8 @@ export default class EditProfile extends React.Component {
 
     render(){
         return(
-            <div className="profile-edit">
-                <h4>Edit profile here</h4>
+            <div>
+            <p className="edit-header">Edit profile</p>
                 <Form horizontal>
                     <FormGroup>
                         <Col componentClass={ControlLabel} sm={2}>

@@ -74,7 +74,7 @@ export default class ChangePassword extends React.Component {
     render(){
         return(
             <div>
-                <p>Change password here</p>
+                <p className="edit-header">Change password</p>
                 <div>
                 <Form horizontal>
                 <FormGroup controlId="formHorizontalEmail">

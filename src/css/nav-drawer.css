@@ -34,7 +34,7 @@
 
 .drawer-height .leftDrawer{
     padding-top: 14px;
-    /* height: 60%; */
+    width: 330px;
 }
 .border-div{
     width: 100%;

@@ -66,8 +66,11 @@ form .form-horizontal {
     width: 80%;
     height: 100%;
     margin: auto;
-    padding-top: 25px;
+    /* padding-top: 25px; */
     text-align: left;
+}
+.profile-edit h4{
+    text-align: center;
 }
 
 .form-group input {
@@ -80,14 +83,11 @@ form .form-horizontal {
     padding-right: 0px;
 }
 
-
-
-.editResetButton {
-    align-content: center;
-    margin-top: 50%;
-    /* background-color: red; */
+.edit-header{
+    padding-top: 15px;
+    padding-bottom: 5px;
 }
 
-.editResetButton .btn-default {
-    margin-left: 40%;
+.editResetButton {
+    margin-top: 10%;
 }

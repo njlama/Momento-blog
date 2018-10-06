@@ -20,9 +20,12 @@ class HeaderDB extends React.Component {
         logout: false,
         userEmail: "", 
         userID: "",
+
         fileName: "", 
         choosenProfileImage: null, 
         profileImageUrl: "", 
+
+        userName: ""
     }
 
     inputFileHandler = (e) => {
@@ -74,7 +77,6 @@ class HeaderDB extends React.Component {
                 this.dbCreateAccount(user.email, user.uid); 
             } else {
               // No user is signed in.
-              console.log(" No User is present");
               history.push("/");
               /**
                * Reload the browser
@@ -97,7 +99,10 @@ class HeaderDB extends React.Component {
                     profilePicture: ""
                 })
             } else {
-                this.setState({ profileImageUrl: snapShot.val().profilePicture});
+                this.setState({ 
+                    profileImageUrl: snapShot.val().profilePicture,
+                    userName: snapShot.val().name,
+                });
                 
                 // dbAccounts.child(uid).set({
                 //     email: mEmail, 
@@ -145,6 +150,15 @@ class HeaderDB extends React.Component {
 
     render(){
         let profileImageUrl = this.state.profileImageUrl;
+        let mName = this.state.userName;
+        let email = this.state.userEmail;
+        let name; 
+        if(mName){
+            name = mName;
+        } else {
+            name = email;
+        }
+        console.log(name);
         return(
             <header>
                 <div className="sideNavDiv">                
@@ -175,7 +189,7 @@ class HeaderDB extends React.Component {
                                 </div>
                                 <p className="drawerUserEmail"
                                     onClick="this.displayProfile.bind(this)">
-                                    <NavLink to="/dashboard/profile">{this.state.userEmail}</NavLink>
+                                    <NavLink to="/dashboard/profile">{name}</NavLink>
                                 </p>
                                 <div className="border-div"></div>
                             </div>
