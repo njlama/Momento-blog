@@ -158,7 +158,6 @@ class HeaderDB extends React.Component {
         } else {
             name = email;
         }
-        console.log(name);
         return(
             <header>
                 <div className="sideNavDiv">                

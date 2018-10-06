@@ -30,21 +30,21 @@ export default class HeaderSignup extends React.Component {
     render(){
         return(
             <div>
-            <div className="main-div">
-                <div className="header-signup">
-                    <Header/>
-                    <div className="getStartedDiv">
-                        <p>Create your inspiring and beautiful blog.</p>
-                        <p className="getStarted">Get started, here!</p>
-                        <NavLink to="/signin-login">Create your Blog</NavLink>
+                <div className="main-div">
+                    <div className="header-signup">
+                        <Header/>
+                        <div className="getStartedDiv">
+                            <p>Create your inspiring and beautiful blog.</p>
+                            <p className="getStarted">Get started, here!</p>
+                            <NavLink to="/signin-login">Create your Blog</NavLink>
+                        </div>
                     </div>
-                </div>
-                <div className="mainpage-blogDisplay">
-                    <div className="dashboard-blogContent">
-                        <EntireBlog/>
+                    <div className="mainpage-blogDisplay">
+                        <div className="dashboard-blogContent">
+                            <EntireBlog/>
+                        </div>
                     </div>
-                </div>
-            </div >
+                </div >
             <Footer/>
             </div>
         );

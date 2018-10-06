@@ -4,22 +4,6 @@
     padding: 5px;
 }
 
-/* .image-div {
-    height: 200px;
-    background-color: lightgrey;
-    content: "upload image";
-    position: relative;
-}
-.image-div::after{ 
-    content: "Your picture goes here"; 
-    position: absolute; 
-    text-align: center;
-    width: 100%;
-    padding-top: 50px;
-    z-index: 3;
-    font-size: 2em;
-} */
-
 .content-area {
     width: 100%;
     height: 128px;
@@ -57,4 +41,65 @@
 .card-padding .cardHeader-title span {
     font-size: 17px;
     text-transform: capitalize;
+}
+
+.dialog-mainPage a {
+  text-decoration: none;
+}
+
+.size-dialog-box{
+    width: 450px;
+    height: 50vh;
+    position: relative;
+}
+
+.size-box {
+    width: 70%;
+    height: 361px;
+    margin: auto;
+    /* margin-top: 20px; */
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 0.9px;
+}
+
+.size-box  #alert-dialog-title h2{
+    font-size: 30px;
+    color: rgb(51, 51, 51);
+    font-weight: bolder;
+    margin-bottom: 40px
+}
+.dialog-p p{
+    font-size: 18px;
+}
+
+.dialog-button a{
+    font-size: 18px;
+    color: rgb(255,94,28);
+    letter-spacing: 0.9px;
+    width: 100%;
+} 
+
+.dialog-button a:hover {
+    color: white;
+}
+.dialog-button button:hover {
+    background-color: rgb(255,133,37);
+}
+
+.dialog-button button{
+    width: 70%;
+    background-color: white;
+    margin: auto;
+    margin-bottom: 30px;  
+    border: 1px solid rgb(255,94,28);
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-family: Quicksand;  
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
