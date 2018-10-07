@@ -42,7 +42,7 @@ class HeaderDB extends React.Component {
         const userUID = this.state.userID;
 
         if(this.state.choosenProfileImage){
-            const uploadTask = ppStorage.child(imgName).put(imageFile)
+            const uploadTask = ppStorage.child(imgName + "/pp").put(imageFile)
             uploadTask.on("state_changed",
                 (snapshot) =>{
                     var mProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;

@@ -19,7 +19,7 @@ export default class LoginForm extends React.Component {
 
 
     state = {
-        loginToSignin: false, 
+        loginToSignin: true, 
         email: "",
         pass: "",
         error: "",

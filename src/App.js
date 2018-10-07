@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from './actions/index';
 import firebase from 'firebase';
+import "./imgs/BlogImage.jpg";
 
 import HeaderSignup from './components/MainPage';
 import LoginForm from './components/LoginForm';
