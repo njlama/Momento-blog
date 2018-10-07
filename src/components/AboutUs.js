@@ -96,7 +96,7 @@ export default class AboutUs extends React.Component{
 
                     <div className="aboutUs-content">
                         <h3 className="aboutUs-contentH3">Your Blog and You</h3>
-                        <p  className="aboutUs-contentP">This is where dreams becomes reality. You let your-self grow with your dream and inspire other people.</p>
+                        <p  className="aboutUs-contentP">This is where dreams become reality. You let yourself grow with your dream and inspire other people.</p>
                     </div>
 
                     <div className="footer">

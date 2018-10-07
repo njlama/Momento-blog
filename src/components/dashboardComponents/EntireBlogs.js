@@ -14,7 +14,10 @@ export default class EntireBlog extends React.Component {
 
     componentWillMount = () => {
         // Pull all blogs from all users 
-        dbBlogs.on('value', function (snapshot) {         
+        
+        dbBlogs.on('value', function (snapshot) { 
+            // console.log(snapshot.val());
+            let allBlogs = [];  
             for(let i in snapshot.val()){
                 for(let j in snapshot.val()[i]){
                     if(snapshot.val()[i][j].status === "published"){
@@ -29,11 +32,13 @@ export default class EntireBlog extends React.Component {
                         blog.image = blogImage;
                         blog.date = blogDate;
                         blog.userName = blogUserName;
+                        allBlogs.push(blog);
                         this.setState({
-                            entireBlog: [...this.state.entireBlog, blog]
+                            entireBlog: [...allBlogs]
                         })
                     }    
                 }
+               
             }
         }.bind(this));
 
@@ -50,8 +55,13 @@ export default class EntireBlog extends React.Component {
         })
     }
 
+    componentWillUnmount = () => {
+        this.setState({
+            entireBlog: []
+        })
+    }
+
     render(){
-        console.log(this.state.entireBlog)
         let mBlog;
         if(this.state.isUserPresent){
             mBlog = this.state.entireBlog.map((blog, index)=> {

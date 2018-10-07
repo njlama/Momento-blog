@@ -81,7 +81,7 @@ export default class MainPageEachBlog extends React.Component{
                         </DialogTitle>
                         <DialogContent className="dialog-p">
                             <DialogContentText id="alert-dialog-description">
-                            Many instresting blogs await for you to be read
+                            Many more interesting blogs to read.
                             </DialogContentText>
                         </DialogContent>
                         <div className="dialog-button">

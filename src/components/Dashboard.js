@@ -15,6 +15,10 @@ const history = createHistory();
 
 class Dashboard extends React.Component {
 
+    componentWillMount = () => {
+        // console.log(this.props.dataDisplay)
+    }
+
     render(){      
         return(
             <div>
