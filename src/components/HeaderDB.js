@@ -102,13 +102,7 @@ class HeaderDB extends React.Component {
                 this.setState({ 
                     profileImageUrl: snapShot.val().profilePicture,
                     userName: snapShot.val().name,
-                });
-                
-                // dbAccounts.child(uid).set({
-                //     email: mEmail, 
-                //     name: snapShot.val().name,
-                //     profilePicture: snapShot.val().profilePicture
-                // }) 
+                }); 
             } 
         })
     }
@@ -168,7 +162,7 @@ class HeaderDB extends React.Component {
                         className="drawer-maindiv">
                         <div className="drawer-height">
                             <div className="profilePicture">
-                                <div><h2>Momento</h2></div>
+                                <div><h2>Memento</h2></div>
                                 <img src={ profileImageUrl || "https://via.placeholder.com/80x80"} 
                                         alt="profile image"
                                         className="profile-image"/>

@@ -51,6 +51,7 @@ export default class EntireBlog extends React.Component {
     }
 
     render(){
+        console.log(this.state.entireBlog)
         let mBlog;
         if(this.state.isUserPresent){
             mBlog = this.state.entireBlog.map((blog, index)=> {
@@ -62,13 +63,16 @@ export default class EntireBlog extends React.Component {
                     dataDisplay={this.props.dataDisplay}/>
             });
         } else {
-            mBlog = this.state.entireBlog.map((blog, index)=> {
-                return <MainPageEachBlog title={blog.title} 
+            mBlog = this.state.entireBlog.slice(0,6).map((blog, index)=> {
+              
+                    return <MainPageEachBlog title={blog.title} 
                         content={blog.content}
                         image={blog.image}
                         date={blog.date}
                         user={blog.userName}
                         dataDisplay={this.props.dataDisplay}/>
+                
+                
             });
         }
         return(

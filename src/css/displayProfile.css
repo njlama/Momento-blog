@@ -84,8 +84,10 @@ form .form-horizontal {
 }
 
 .edit-header{
-    padding-top: 15px;
-    padding-bottom: 5px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    font-size: 22px;
+    font-weight: 500;
 }
 
 .editResetButton {

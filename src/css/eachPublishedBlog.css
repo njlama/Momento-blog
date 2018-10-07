@@ -85,6 +85,7 @@
 }
 .dialog-button button:hover {
     background-color: rgb(255,133,37);
+    color: white;
 }
 
 .dialog-button button{
