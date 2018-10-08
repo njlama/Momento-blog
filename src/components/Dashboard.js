@@ -15,10 +15,6 @@ const history = createHistory();
 
 class Dashboard extends React.Component {
 
-    componentWillMount = () => {
-        // console.log(this.props.dataDisplay)
-    }
-
     render(){      
         return(
             <div>
@@ -34,9 +30,10 @@ class Dashboard extends React.Component {
                     </div>
                     <div className="dashboard-blogContent">
                         <EntireBlog dataDisplay={this.props.dataDisplay}/>
-                    </div>    
+                    </div>  
+                    <Footer/>  
                 </div>
-                <Footer/>
+                {/* <Footer/> */}
             </div>
         );
     }
