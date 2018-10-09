@@ -10,6 +10,7 @@ export default class ArrowNavToDashboard extends React.Component {
         return(
             <div className="backArrowDiv">
                 <Button variant="fab" color="primary" 
+                    className="arrow"
                     onClick={()=> { history.push('/dashboard'); window.location.reload()}}
                     aria-label="Add"
                     >&larr;</Button>

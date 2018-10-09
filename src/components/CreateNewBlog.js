@@ -1,11 +1,12 @@
 import React from 'react';
 
 import Button from '@material-ui/core/Button';
+import uniqid from 'uniqid';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
-import stripTags from 'striptags';
+// import stripTags from 'striptags';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import '../css/createNewBlog.css';
 import TextField from '@material-ui/core/TextField';
@@ -47,11 +48,17 @@ class CreateNewBlog extends React.Component {
     onEditorStateChange = (event) => {
        
         let editorSourceHTML = draftToHtml(convertToRaw(event.getCurrentContent()));
-        let mSourceHTML = stripTags(editorSourceHTML);
-        let nSourceHTML = mSourceHTML.replace(/&nbsp;/gi, "");
-        nSourceHTML = nSourceHTML.trim();
+        // let mSourceHTML = stripTags(editorSourceHTML);
+        // let nSourceHTML = mSourceHTML.replace(/&nbsp;/gi, "");
+        
+        // nSourceHTML = nSourceHTML.trim();
+        // this.setState({
+        //     editorState: nSourceHTML,
+        // })
+        let rawValue = convertToRaw(event.getCurrentContent());
+        let value = rawValue.blocks[0].text;
         this.setState({
-            editorState: nSourceHTML,
+            editorState: value,
         })
     }
 
@@ -67,9 +74,6 @@ class CreateNewBlog extends React.Component {
     /** Uploading image for blog */
 
     chooseImageHandler = (e) => {
-        // if(e.target.files[0].type === "image/jpeg" ||
-        // e.target.files[0].type === "image/jpg" ||
-        // e.target.files[0].type === "image/png"){
             this.setState({
                 image: e.target.files[0]
             })
@@ -77,9 +81,10 @@ class CreateNewBlog extends React.Component {
     }
 
     uploadButtonHandler = () => {
+        let uniqID = uniqid();
         const image = this.state.image;
         if(image !== null & image !== ""){
-            const uploadTask = storage.child(image.name+"/hooo").put(image);
+            const uploadTask = storage.child(uniqID + image.name).put(image);
     
             // state_changed event takes 3 arguments: progress, error, complete
             uploadTask.on('state_changed',
@@ -94,7 +99,7 @@ class CreateNewBlog extends React.Component {
                  },
                 () => {
                     // complete function. Handles sucessful uploads on complete
-                    storage.child(image.name).getDownloadURL().then(downloadURL =>{
+                    storage.child(uniqID +image.name).getDownloadURL().then(downloadURL =>{
                         console.log(downloadURL);
                         this.setState({
                             url: downloadURL,
@@ -129,6 +134,7 @@ class CreateNewBlog extends React.Component {
         } else {
             userName = this.state.userEmail
         }
+        console.log(content)
         let url = typeof image;
         if(url === "string"){
             if(titleValue !== ""  && content !== "" && titleValue !== null && content !== null){
@@ -159,6 +165,7 @@ class CreateNewBlog extends React.Component {
         } else {
             userName = this.state.userEmail
         }
+        console.log(content)
 
         let url = typeof image;
         if(url === "string"){
@@ -212,7 +219,7 @@ class CreateNewBlog extends React.Component {
     }
 
     render(){
-        
+       
         return(
             <div>
                 <ArrowNavToDashboard/>

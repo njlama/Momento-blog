@@ -99,10 +99,16 @@
 
 /* back arrow  */
 
-.backArrowDiv button .MuiButton-label-2{
+/* .backArrowDiv button .MuiButton-label-2{
     font-size: 25px;
     color: black;
     height: 52px;
+} */
+
+.backArrowDiv button.arrow{
+    font-size: 25px;
+    color: black;
+    height: 56px;
 }
 
 .backArrowDiv button {

@@ -78,13 +78,16 @@ export default class EachPublishedBlog extends React.Component{
                     <CardActionArea className="content-area"
                         onClick={this.expandContentAreaHandler.bind(this)}>
                         <CardContent>
-                            <Typography>
-                                <NavLink to="/dashboard/blog-display" className="blog-display">
-                                    <Truncate lines={3} ellipsis={<span>...<a>Read More</a></span>}>
+
+                        <NavLink to="/dashboard/blog-display" className="blog-display">
+                                <Typography component="p" className="content-paragraph">
+                                    <Truncate lines={3} 
+                                        ellipsis={<span>. . . <a>Read More</a></span>}>
                                         {content}
                                     </Truncate>
-                                </NavLink>
-                            </Typography>
+                                </Typography>
+                            </NavLink>
+
                         </CardContent>
                     </CardActionArea>
                     <div className="cardButtonArea">

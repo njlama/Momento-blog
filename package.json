@@ -26,7 +26,7 @@
     "read-more-react": "^1.0.6",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
-    "striptags": "^3.1.1"
+    "uniqid": "^5.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

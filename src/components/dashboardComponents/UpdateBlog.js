@@ -2,14 +2,14 @@ import React from 'react';
 
 import Button from '@material-ui/core/Button';
 import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+// import draftToHtml from 'draftjs-to-html';
+// import htmlToDraft from 'html-to-draftjs';
 import { EditorState, convertToRaw, ContentState,
          convertFromHTML, createWithContent, createFromText,
             createFromBlockArray, processHTML, getCurrentContent } from 'draft-js';
-import stripTags from 'striptags';
-import Draft from 'draft-js';
-import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor';
+// import stripTags from 'striptags';
+// import Draft from 'draft-js';
+// import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor';
 import { convertToHTML } from 'draft-convert';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import '../../css/createNewBlog.css';
@@ -64,9 +64,13 @@ class UpdateBlog extends React.Component {
 
     handleChange = editorState => {
         let content = convertToHTML(editorState.getCurrentContent());
-        let mEditorValue = stripTags(content);
-        let nEditorValue = mEditorValue.replace(/&nbsp;/gi, "");
-        this.setState({ editorValue: nEditorValue})   
+        // console.log(convertToRaw(content));
+        let rawValue = convertToRaw(editorState.getCurrentContent());
+        let value = rawValue.blocks[0].text;
+        this.setState({ editorValue: value}) 
+        // let mEditorValue = stripTags(content);
+        // let nEditorValue = mEditorValue.replace(/&nbsp;/gi, "");
+        // this.setState({ editorValue: nEditorValue})   
     }
 
     /** Uploading image for blog */

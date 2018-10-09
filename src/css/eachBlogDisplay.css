@@ -10,8 +10,9 @@
     font-family: 'quicksand';
     font-size: 22px;
     line-height: 150%;
-    /* color: darkgrey; */
+    text-transform: capitalize;
 }
+
 .title-div h6 {
     font-family: 'quicksand';
     font-size: 12px;
@@ -19,9 +20,9 @@
     color: grey;
     text-transform: uppercase;
 }
+
 .title-div .user-span{
     padding-right:5px; 
-    /* border-right: 1px solid; */
     margin-right: 5px;
 }
 
@@ -40,6 +41,7 @@
     margin-bottom: 20vh;
     font-family: 'quicksand';
     font-style: italic;
+    font-size: 19px;
 }
 .greeting{
     padding-top: 20px;

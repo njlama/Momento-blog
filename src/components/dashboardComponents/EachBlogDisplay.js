@@ -7,37 +7,6 @@ const history = createHistory();
 
 export default class EachBlogDisplay extends React.Component{
 
-    state = {
-        openRemoveDialogBox: false,
-    }
-
-    removeButtonHandler = () => {
-        this.setState({ openRemoveDialogBox: true });
-    }
-
-    handleClose = () => {
-        this.setState({ openRemoveDialogBox: false })   
-    }
-
-    YesForRemoveHandler = () => {
-        let id = this.props.id;
-        let uid = this.props.uid;
-        this.props.removeBlogAction(id, uid);
-        this.setState({ openRemoveDialogBox: false }) 
-    }
-
-    buttonHandlerToUnpublished = () => {
-        let uid = this.props.uid;
-        let id = this.props.id;
-        let title = this.props.title;
-        let content = this.props.content;
-        let image = this.props.image;
-        let user = this.props.user;
-        let date = this.props.date;
-        let status = "saved";
-        this.props.updateBlogFirebase(uid, id, title, content, status, image, date, user);
-    }
-
     componentWillMount = () => {
         let blog = this.props.blogDisplayInfo;
         function isEmpty(param){
@@ -48,7 +17,7 @@ export default class EachBlogDisplay extends React.Component{
             return false;
         }
 
-        if(isEmpty(blog) !== true){
+        if(isEmpty(blog) === false){
             history.goBack();
         }
     }

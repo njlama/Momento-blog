@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
+import uniqid from 'uniqid';
 import { NavLink } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -40,9 +41,10 @@ class HeaderDB extends React.Component {
         const imgName = this.state.fileName;
         const imageFile = this.state.choosenProfileImage;
         const userUID = this.state.userID;
+        let uniqID = uniqid();
 
         if(this.state.choosenProfileImage){
-            const uploadTask = ppStorage.child(imgName + "/pp").put(imageFile)
+            const uploadTask = ppStorage.child(uniqID + imgName).put(imageFile)
             uploadTask.on("state_changed",
                 (snapshot) =>{
                     var mProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -54,7 +56,7 @@ class HeaderDB extends React.Component {
                     console.log(error);
                 }, 
                 () => {
-                    ppStorage.child(imgName).getDownloadURL().then(function(downloadURL){
+                    ppStorage.child(uniqID + imgName).getDownloadURL().then(function(downloadURL){
                         this.setProfilePicture(userUID, downloadURL);
                     }.bind(this));
                 });
