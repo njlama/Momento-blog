@@ -33,7 +33,6 @@ class Dashboard extends React.Component {
                     </div>  
                     <Footer/>  
                 </div>
-                {/* <Footer/> */}
             </div>
         );
     }

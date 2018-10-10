@@ -101,7 +101,7 @@ export default class DeveloperFooter extends React.Component{
                     <div className="aboutUs-content">
                         <h3 className="aboutUs-contentH3">Front-end Developer</h3>
                         <p  className="aboutUs-contentP">Hi there! This is NJ Lama, a self-taught front-end developer. 
-                            Skilled on ReactJS Library, Router, Redux, HTML, CSS, Javascript, JQuery, Bootstrap, APIs, Firebase (NoSQL database). I have been working
+                            Skilled on ReactJS Library, Router, Redux, HTML5, CSS, JavaScript, JQuery, Bootstrap, APIs, JSON, Firebase (NoSQL database). I have been working
                             on my personal projects to learn and enhance web development skills and knowledge. Before I started as a front-end developer, I was an Occupational Therapist and worked for a year.</p>
                     </div>
 
